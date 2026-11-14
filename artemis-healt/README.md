@@ -139,3 +139,18 @@ python -m unittest discover -s tests -v
 - **Frontend (Vercel — React + Vite + TypeScript + Recharts):**
   - Configurar en Vercel únicamente la URL pública del backend: `VITE_API_BASE_URL=https://<tu-backend-url>`.
   - Nunca configurar `DATABASE_URL`, `DATABASE_ADMIN_URL` ni `SUPABASE_SERVICE_ROLE_KEY` en las variables del frontend.
+
+---
+
+## Frontend
+React + TypeScript + Vite. Especificación y prompt de generación: [docs/frontend-prompt.md](docs/frontend-prompt.md).
+
+Desde `frontend/` (requiere Node 20+; el lockfile fija versiones):
+1. `npm install`
+2. Con el backend corriendo en `http://localhost:8000` (ver arriba), `npm run dev` y abrir http://localhost:5173. En desarrollo usa `VITE_API_MODE=http` (archivo `.env.development`): Vite redirige `/api` al backend.
+3. Sin backend: `npm run dev:mock` usa el modo `mock`, que implementa el contrato en el navegador sobre `data/demo/observations.json` (las capturas se pierden al recargar).
+
+- `npm test`: pruebas de la regla `baseline_v1` y del adaptador HTTP.
+- `npm run build`: genera `frontend/dist`, que FastAPI sirve en `/` en la entrega.
+
+Pantallas: Resumen, Registrar, Historial, Aprender y `/componentes` (galería interna). El adaptador `src/services/httpApi.ts` traduce las respuestas del backend al contrato que usan las pantallas y consulta el historial con `strict_indicator=true` para no mezclar las escalas 1–7/0–100 con las de check-in 1–5. Las referencias de las fichas educativas locales siguen pendientes de revisión.

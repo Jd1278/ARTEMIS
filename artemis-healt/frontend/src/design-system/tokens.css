@@ -1,46 +1,67 @@
-/* ARTEMIS HEALTH · v1. Semantic roles are operational, never clinical. */
+/* Design tokens — single source for colour, type, spacing and shape (docs/design.md, RNF-14).
+   Light "laboratorio" theme. No colour represents a clinical state:
+   the accent marks interaction/selection, the secondary marks reference lines. */
 :root {
-  color-scheme: dark;
-  --bg: #08111f;
-  --surface: #122033;
-  --surface-raised: #1a2d43;
-  --border: #30465e;
-  --border-control: #66839f;
-  --text: #f4f7fb;
-  --muted: #bccbdd;
-  --accent: #66d9e8;
-  --on-accent: #08111f;
-  --accent-blue: #79aaff;
-  --accent-lunar: #e8dfb7;
-  --accent-mint: #7edbc3;
-  --warning: #f3c76a;
-  --error: #ff9aab;
-  --focus: #66d9e8;
-  --chart-sleep: var(--accent-lunar);
-  --chart-fatigue: var(--accent-blue);
-  --chart-stress: var(--accent);
-  --chart-pulse: var(--accent-mint);
-  /* Font files are not bundled yet: these declarations include local fallbacks. */
-  --font-heading: 'Space Grotesk', 'Segoe UI', sans-serif;
-  --font-body: 'Inter', 'Segoe UI', sans-serif;
-  --font-mono: 'IBM Plex Mono', Consolas, monospace;
-  --radius: 12px;
-  --radius-card: 16px;
-  --radius-control: 10px;
-  --space: 8px;
+  color-scheme: light;
+
+  /* Base palette */
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --text: #0e1a2b;
+  --muted: #4a5a70;
+  --accent: #1f5fd1;
+  --secondary: #7a5af8;
+
+  /* Derived neutrals */
+  --surface-raised: #f0f4fa;
+  --surface-sunken: #eef2f8;
+  --border: #dce3ee;
+  --border-strong: #b3c0d3;
+  --on-accent: #ffffff;
+  --focus: #1f5fd1;
+  --accent-soft: #e6eefc;
+  --secondary-soft: #efeafe;
+
+  /* System states (not clinical), always paired with text and an icon */
+  --notice-bg: #eef3fd;
+  --notice-border: #9db5e8;
+  --error-text: #a3261a;
+  --error-border: #e0796a;
+  --error-bg: #fdf1ef;
+
+  /* Charts */
+  --chart-line: #1f5fd1;
+  --chart-ref: #7a5af8;
+  --chart-grid: #e3e8f0;
+
+  /* Decorative */
+  --star: #1f5fd1;
+  --shadow-sm: 0 1px 2px rgba(14, 26, 43, 0.06), 0 2px 8px rgba(14, 26, 43, 0.05);
+  --shadow-md: 0 4px 12px rgba(14, 26, 43, 0.08), 0 12px 32px -12px rgba(31, 95, 209, 0.25);
+
+  /* Typography */
+  --font: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --text-body: 16px;
+  --text-meta: 14px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-hero: 40px;
+  --line: 1.5;
+
+  /* Spacing scale 4/8/12/16/24/32 */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-12: 48px;
-  --space-16: 64px;
-  --target-min: 44px;
-  --duration-fast: 160ms;
-  --duration-normal: 220ms;
-}
+  --space-5: 24px;
+  --space-6: 32px;
+  --space: var(--space-2);
 
-@media (prefers-reduced-motion: reduce) {
-  :root { --duration-fast: 0ms; --duration-normal: 0ms; }
+  /* Shape and targets */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --target: 44px;
+  --sidebar: 240px;
+  --bottom-nav: 64px;
 }
