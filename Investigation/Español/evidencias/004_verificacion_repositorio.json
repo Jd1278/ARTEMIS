@@ -1,0 +1,59 @@
+{
+  "report": "004",
+  "review_date": "2026-11-14",
+  "repository": "https://github.com/Jd1278/ARTEMIS",
+  "branch": "main",
+  "commit": "92cf0cfe0bcc40f0c59548d104d8ad9ca40ac698",
+  "method": "GitHub connector inspection and isolated local checkout of the same commit",
+  "remote_mutations": false,
+  "python_version": "3.13.1",
+  "inventory": {
+    "tracked_files": 112,
+    "gitkeep_placeholders": 14,
+    "tree_truncated": false,
+    "reachable_commits_returned": 3,
+    "branches_returned": 1,
+    "pull_requests_returned": 0,
+    "github_actions_runs_total": 0
+  },
+  "checks": [
+    {"command": "python -m unittest discover -s tests -v", "directory": "artemis-healt", "exit_code": 0, "tests_passed": 2},
+    {"command": "python scripts/validate.py", "directory": "artemis-sleep-dataset", "exit_code": 0, "pass_messages": 46},
+    {"check": "prepare_demo.build equals packaged observations semantically", "passed": true},
+    {"check": "packaged observations SHA256 equals manifest output_sha256", "passed": true},
+    {"check": "all dataset-audit SHA256 entries equal canonical Git blob bytes", "passed": true, "files_checked": 12}
+  ],
+  "demo": {
+    "source_rows": 1080,
+    "observations": 4320,
+    "unique_ids": 4320,
+    "profiles": 6,
+    "indicators": 4,
+    "rows_per_indicator": 1080,
+    "origin_type": "synthetic",
+    "null_values": 92,
+    "nulls_by_indicator": {"sleep_duration_h": 0, "samn_perelli": 7, "stress_vas": 32, "resting_hr_bpm": 53},
+    "source_canonical_sha256": "1748a068c0af4c811b791bdf452b406b05a96da09dd3db2ac02dc11d6fb5d00d",
+    "output_sha256": "c8c80d090337c7bbca882eaa2b6fd8ffcdd3dd04a580c98b834f553a35d0a2c1"
+  },
+  "integrated_dataset": {
+    "rows": 20080,
+    "by_declared_source": {"simulated": 12960, "simulated_from_real": 588, "real_nasa_cdaweb": 4320, "real_nasa_osdr": 1064, "real_nasa_lsda": 1148},
+    "warning": "Row counts are not independent participant or exposure counts. External scientific provenance was not independently reaudited."
+  },
+  "component_row_counts": {
+    "bedrest_actigraphy_clean.csv": 207,
+    "bedrest_tilt_clean.csv": 10,
+    "bedrest_winscat_clean.csv": 30,
+    "inspiration4_blood_long.csv": 1064,
+    "iss_radiation_daily_clean.csv": 180
+  },
+  "api_inspection": {
+    "method": "module import, route enumeration and direct health handler invocation; not an HTTP test",
+    "business_routes": ["GET /api/health"],
+    "health_result": {"status": "scaffold", "database_checked": false}
+  },
+  "not_performed": ["database migrations", "Supabase remote verification", "full frontend/API integration", "clinical validation", "rerun of source-regenerating run_all.sh", "independent redownload and audit of all NASA source data"],
+  "deployment": {"declared_url": "https://artemis-two-pi.vercel.app", "verification": "Web tool could not retrieve root or /api/health; availability and functionality remain unverified"},
+  "line_endings_note": "Windows working-tree line ending conversion changes CSV byte hashes; canonical Git blobs match all 12 recorded audit hashes."
+}
