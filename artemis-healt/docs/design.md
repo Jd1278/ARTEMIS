@@ -1,6 +1,8 @@
 # Dirección visual
 Tema claro tipo laboratorio (elegido en la fase visual, sustituye el panel oscuro inicial; pendiente de aprobación de I4 e I6): fondo #F5F7FB, superficie #FFFFFF, texto #0E1A2B, secundario de texto #4A5A70, acento #1F5FD1 y secundario #7A5AF8 (líneas de referencia). Contrastes WCAG medidos: texto 17.5:1, texto secundario ≥ 6.2:1, acento 5.8:1, blanco sobre acento 5.8:1, violeta 4.5:1. Íconos Phosphor (MIT) en peso duotono; logo, avatares de tripulación e ilustraciones son SVG propios. Tokens en frontend/src/design-system/tokens.css y capa visual en theme.css.
 
+La propuesta "Identidad visual v1" (tema oscuro, Lucide, colores por indicador) está en [visual/README.md](visual/README.md) y se conserva como referencia; el frontend implementado usa el tema claro anterior. El equipo (I4 e I6) debe decidir cuál queda.
+
 Resumen: selector de perfil y día de misión, etiqueta SIMULADO, cuatro tarjetas, gráfica y explicación. Registrar: campos con etiquetas persistentes, ayuda de escalas 1–7 y 0–100. Historial: tabla accesible equivalente a gráfica. Estados: carga, vacío, imputado excluido, sin historial suficiente, dato antiguo y error de guardado. Ningún color representa estado clínico.
 
 Escritorio: navegación lateral, cuatro tarjetas y gráfica con detalle; tablet dos columnas; móvil una columna y navegación inferior. Galería interna de componentes antes de extender pantallas. Revisar a 360, 768 y 1440px, teclado y zoom 200%. La demo mostrará fecha histórica y cursor de misión, sin fingir actualidad. I4 e I6 aprueban capturas con datos fijos.
