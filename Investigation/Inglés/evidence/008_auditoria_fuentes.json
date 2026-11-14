@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-14",
+  "commit": "80be128b17b5046ecd267d5a0604bbc5c74f5444",
+  "repository_modified": false,
+  "raw_downloads_persisted_to_research_folder": false,
+  "downloads": [
+    {"study": "OSD-569", "url": "https://osdr.nasa.gov/geode-py/ws/studies/OSD-569/download?source=datamanager&file=LSDS-7_Complete_Blood_Count_CBC.upload_SUBMITTED.csv", "http_status": 200, "bytes": 26138, "rows": 553, "sha256": "10a878b009eb2ea11a13fe92ad698098858639e8ed02f5ee849431313b9457d3", "pivot_rows": 28, "stored_rows": 28, "same_columns": true, "different_cells_after_pivot": 0, "duplicate_source_analyte_keys": 0},
+    {"study": "OSD-575", "url": "https://osdr.nasa.gov/geode-py/ws/studies/OSD-575/download?source=datamanager&file=LSDS-8_Comprehensive_Metabolic_Panel_CMP.upload_SUBMITTED.csv", "http_status": 200, "bytes": 25275, "rows": 531, "sha256": "dab247eb794edab59aaaa683c85fd1f2dbf4ae3684872739338e10ead4192a0c", "pivot_rows": 28, "stored_rows": 28, "same_columns": true, "different_cells_after_pivot": 0, "duplicate_source_analyte_keys": 0}
+  ],
+  "pivot_method": "pandas pivot_table index SUBJECT_ID, SEX and TEST_DATE or timepoint; columns ANALYTE; values VALUE; aggfunc first; sort false. Rename key columns, align columns and rows, compare strings after missing-to-empty normalization.",
+  "hapi_metadata": {"url": "https://cdaweb.gsfc.nasa.gov/hapi/info?id=ISS_DOSANL_TEPC", "http_status": 200, "bytes": 1150, "sha256": "d88000e901530e37ce572769d738ad3e2009c34172457d615123731b3081f69f", "units": {"DOSE": "uGy/min", "DOSE_EQ60": "uSv/min", "TIME_INTERVAL": "min"}},
+  "hapi_sample_request": "https://cdaweb.gsfc.nasa.gov/hapi/data?id=ISS_DOSANL_TEPC&time.min={date}T00:00:00Z&time.max={next_date}T00:00:00Z&parameters=DOSE,DOSE_EQ60,TIME_INTERVAL",
+  "hapi_samples": [
+    {"date": "2017-03-01", "rows": 1440, "unique_timestamps": 1440, "duplicate_exact_timestamps": 0, "duplicates_same_minute": 0},
+    {"date": "2017-04-06", "rows": 1351, "unique_timestamps": 1261, "duplicate_exact_timestamps": 90, "duplicates_same_minute": 90}
+  ],
+  "limitations": ["Only two TEPC days sampled; full 180-day dose series not independently regenerated", "OSDR match applies to source pivot, not clinical correctness of downstream corrections", "NLSP portal could not be retrieved; provenance remains declared", "No clinical validation or human participants"]
+}

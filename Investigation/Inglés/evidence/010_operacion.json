@@ -1,0 +1,81 @@
+{
+  "report": "010",
+  "date": "2026-11-14",
+  "commit": "80be128b17b5046ecd267d5a0604bbc5c74f5444",
+  "python": "3.13.1",
+  "remote_database_touched": false,
+  "tests": [
+    {
+      "command": "python -m unittest discover -s tests -v",
+      "directory": "artemis-healt",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_contract (test_dataset_contract.Contract.test_contract) ... ok\ntest_seed_is_self_contained_and_verified (test_seed_artifact.SeedArtifact.test_seed_is_self_contained_and_verified) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.247s\n\nOK\n"
+    },
+    {
+      "command": "python scripts/validate.py",
+      "directory": "artemis-sleep-dataset",
+      "exit_code": 0,
+      "stdout": "PASS 1080 rows (6 crew x 180 days)\nPASS one record per crew member per day\nPASS crew_id format CM-0X\nPASS sleep hours within 0-16\nPASS Samn-Perelli within 1-7\nPASS resting HR within 30-200\nPASS stress_vas within 0-100\nPASS workload_vas within 0-100\nPASS mood_vas within 0-100\nPASS status_sleep_duration_h uses valid labels\nPASS status_short_sleep_streak_d uses valid labels\nPASS status_samn_perelli uses valid labels\nPASS status_pvt_lapses uses valid labels\nPASS status_pvt_speed_change_pct uses valid labels\nPASS status_stress_vas uses valid labels\nPASS status_workload_vas uses valid labels\nPASS status_mood_vas uses valid labels\nPASS status_resting_hr_delta_bpm uses valid labels\nPASS event_type labels valid\nPASS is_anomaly consistent with event_type\nPASS mean in-flight sleep 6.36 h within published ISS range (~6.0-6.5 h)\nPASS share of nights >= 7 h = 24% (published ISS: 24%)\nPASS JSON has 6 crew x 180 days\nPASS D: 4 real crew x 7 timepoints\nPASS D: column-shift error fixed (platelets 100-500, MPV 5-15 in every row)\nPASS D: absolute neutrophils = WBC x neutrophil% in every row\nPASS INT: every observation labeled with its source\nPASS INT: real crew and simulated crew never mixed in the same mission\nPASS INT: bed rest subjects kept in their own analog mission\nPASS INT: observation_id is unique\nPASS INT: simulated preflight labs within 1.5 SD of REAL Inspiration4 preflight means (every analyte, by sex)\nPASS INT: post-flight (R+1) change has the same direction as the real crew for glucose_mg_dl, wbc_10e3_ul, lymphocytes_abs_cells_ul, bun_mg_dl\nPASS INT: share of out-of-range lab values similar (simulated 3.6% vs real 3.8%)\nPASS INT: wide table 1080 crew-days, latest lab known every day\nPASS RAD: 180 mission days, no missing dose after cleaning\nPASS RAD: no day counts more than 24 h of data (duplicates removed)\nPASS RAD: cumulative dose only increases\nPASS RAD: median 0.88 mSv/day, consistent with ~300 mSv/year reported for the ISS\nPASS RAD: 2017-03-26 spike kept and flagged red\nPASS RAD: real ISS dates map to the same month/day of the simulated mission\nPASS BR: 207 actigraphy nights, 3 subjects (consolidated file, not the mislabeled query file)\nPASS BR: sleep hours 0-12 and efficiency 0-100% after converting H:MM / H:MM:SS text\nPASS BR: the 17 'No Data' nights stay missing (not invented)\nPASS BR: 30 WinSCAT sessions with valid accuracies\nPASS BR: tilt heart rate excluded (source HR file is a copy of DBP)\nPASS BR: tilt tolerance lower after bed rest than before (orthostatic deconditioning)\n\nALL CHECKS PASSED\n",
+      "stderr": ""
+    }
+  ],
+  "data": {
+    "observations": 4320,
+    "nulls": 92,
+    "profiles": 6,
+    "origins": {
+      "synthetic": 4320
+    }
+  },
+  "http_in_process": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200,
+      "body": {
+        "status": "scaffold",
+        "database_checked": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/profiles",
+      "status": 404,
+      "body": {
+        "detail": "Not Found"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/indicators",
+      "status": 404,
+      "body": {
+        "detail": "Not Found"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/profiles/demo/dashboard",
+      "status": 404,
+      "body": {
+        "detail": "Not Found"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/observations",
+      "status": 404,
+      "body": {
+        "detail": "Not Found"
+      }
+    }
+  ],
+  "limits": [
+    "No frontend interaction or human testing",
+    "No Supabase connection or migration",
+    "No physical or emulated spacecraft link",
+    "GET health does not check database",
+    "No claim of clinical validation"
+  ]
+}
