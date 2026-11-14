@@ -1,5 +1,7 @@
 # ARTEMIS HEALTH
 
+Proyecto de software para monitorizar la salud de astronautas en misiones espaciales, desarrollado para NASA Space Apps Challenge 2026.
+
 El proyecto activo está en [artemis-healt](artemis-healt/README.md).
 
 - Requisitos finales: [requirements.md](artemis-healt/docs/requirements.md).
