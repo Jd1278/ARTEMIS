@@ -1,5 +1,5 @@
 <img width="1500" height="500" alt="Aesthetic Twitter Header" src="https://github.com/user-attachments/assets/b7c3fff4-04da-463f-9c95-61f7e47d6181" />
-# ARTEMIS HEALTH
+<H1> ARTEMIS HEALTH</H1>
 
 An educational web prototype for exploring astronaut wellbeing indicators across a fictional space mission, developed for NASA Space Apps Challenge 2026.
 
