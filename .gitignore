@@ -6,3 +6,5 @@ __pycache__/
 **/var/*.db*
 **/var/*.sqlite*
 *.egg-info/
+.local-backups/
+.vercel/
