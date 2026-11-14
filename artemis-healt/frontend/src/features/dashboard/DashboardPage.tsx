@@ -20,18 +20,18 @@ const RANGES = [
   { value: "14", label: "14 d" },
   { value: "30", label: "30 d" },
   { value: "90", label: "90 d" },
-  { value: "all", label: "Misión" },
+  { value: "all", label: "Mission" },
 ] as const;
 type Range = (typeof RANGES)[number]["value"];
 
 function shortDiff(c: Comparison | undefined): string {
   if (!c) return "";
-  if (!c.current) return "Sin valor válido";
-  if (!c.sufficient) return `Historial insuficiente (${c.days_used}/${c.minimum_days})`;
+  if (!c.current) return "No valid value";
+  if (!c.sufficient) return `Insufficient history (${c.days_used}/${c.minimum_days})`;
   const unit = INDICATOR_BY_KEY[c.indicator].difference_unit;
   const d = c.difference!;
-  if (Math.abs(d) < 1e-9) return `= mediana (${formatNumber(c.baseline!)})`;
-  return `${d > 0 ? "+" : "−"}${formatNumber(Math.abs(d))} ${unit} vs. mediana`;
+  if (Math.abs(d) < 1e-9) return `= median (${formatNumber(c.baseline!)})`;
+  return `${d > 0 ? "+" : "−"}${formatNumber(Math.abs(d))} ${unit} vs. median`;
 }
 
 interface CardProps {
@@ -78,7 +78,7 @@ function IndicatorCard({ indicator, rows, comparison, missionDay, selected, onSe
           </span>
           <span className="ind-card__diff">{shortDiff(comparison)}</span>
           <span className="meta">
-            Día {shown.mission_day} · {formatDateTime(shown.timestamp)}
+            Day {shown.mission_day} · {formatDateTime(shown.timestamp)}
           </span>
           <span className="row">
             <OriginBadge origin={shown.origin_type} method={shown.capture_method} />
@@ -86,17 +86,17 @@ function IndicatorCard({ indicator, rows, comparison, missionDay, selected, onSe
           </span>
           {age !== null && age >= STALE_AFTER_DAYS && (
             <span className="ind-card__note">
-              <span aria-hidden="true">⏱</span> Dato antiguo: hace {age} días
+              <span aria-hidden="true">⏱</span> Stale data: {age} days ago
             </span>
           )}
         </>
       ) : (
-        <span className="meta">Sin valores válidos hasta este día.</span>
+        <span className="meta">No valid values up to this day.</span>
       )}
       {latestExcluded && (
         <span className="ind-card__note">
-          <span aria-hidden="true">⊘</span> Día {latestExcluded.mission_day}: valor excluido
-          {latestExcluded.source_value !== null ? ` (original ${formatValue(indicator, latestExcluded.source_value)}, no se usa)` : ""}
+          <span aria-hidden="true">⊘</span> Day {latestExcluded.mission_day}: value excluded
+          {latestExcluded.source_value !== null ? ` (original ${formatValue(indicator, latestExcluded.source_value)}, not used)` : ""}
         </span>
       )}
     </button>
@@ -108,43 +108,43 @@ function DayDetail({ indicator, day, rows, onMove, onClose }: { indicator: Indic
   return (
     <div className="day-detail" aria-live="polite">
       <div className="row" style={{ justifyContent: "space-between" }}>
-        <h3>Día {day}</h3>
+        <h3>Day {day}</h3>
         <div className="row">
-          <Button aria-label="Día anterior en la gráfica" onClick={() => onMove(day - 1)}>
+          <Button aria-label="Previous day in the chart" onClick={() => onMove(day - 1)}>
             ‹
           </Button>
-          <Button aria-label="Día siguiente en la gráfica" onClick={() => onMove(day + 1)}>
+          <Button aria-label="Next day in the chart" onClick={() => onMove(day + 1)}>
             ›
           </Button>
           <Button variant="ghost" onClick={onClose}>
-            Cerrar
+            Close
           </Button>
         </div>
       </div>
       {items.length === 0 ? (
-        <p className="meta">Sin registro este día.</p>
+        <p className="meta">No entry on this day.</p>
       ) : (
         items.map((o) => (
           <dl key={o.id} className="cmp-grid">
             <div>
-              <dt className="meta">Valor</dt>
-              <dd>{o.value === null ? `Excluido (original ${o.source_value === null ? "—" : formatNumber(o.source_value)})` : formatValue(indicator, o.value)}</dd>
+              <dt className="meta">Value</dt>
+              <dd>{o.value === null ? `Excluded (original ${o.source_value === null ? "—" : formatNumber(o.source_value)})` : formatValue(indicator, o.value)}</dd>
             </div>
             <div>
-              <dt className="meta">Momento</dt>
+              <dt className="meta">Time</dt>
               <dd>{formatDateTime(o.timestamp)}</dd>
             </div>
             <div>
-              <dt className="meta">Origen y calidad</dt>
+              <dt className="meta">Origin and quality</dt>
               <dd className="row">
                 <OriginBadge origin={o.origin_type} method={o.capture_method} />
                 <QualityBadge flags={o.quality_flags} />
               </dd>
             </div>
             <div>
-              <dt className="meta">Procedencia</dt>
+              <dt className="meta">Provenance</dt>
               <dd className="mono" style={{ fontSize: "var(--text-meta)" }}>
-                {o.source_file ? `${o.source_file} · fila ${o.source_row}` : "Captura manual"}
+                {o.source_file ? `${o.source_file}${o.source_row ? ` · row ${o.source_row}` : ""}` : "Manual entry"}
               </dd>
             </div>
           </dl>
@@ -201,12 +201,12 @@ const DashboardBody = memo(function DashboardBody({ profileId, missionDay, at, r
     <>
       <section className="hero" aria-labelledby="hero-title">
         <div>
-          <p className="hero__eyebrow">{MISSION.name} · Misión simulada</p>
+          <p className="hero__eyebrow">{MISSION.name} · Simulated mission</p>
           <h1 className="hero__title" id="hero-title">
-            Día {missionDay} <span>de {MISSION.days}</span>
+            Day {missionDay} <span>of {MISSION.days}</span>
           </h1>
           <p className="meta">
-            {formatDate(missionDayToDate(missionDay))} · fecha histórica simulada. Pulsa <strong>Reproducir</strong> para recorrer la misión o toca el mapa orbital para viajar a otro día.
+            {formatDate(missionDayToDate(missionDay))} · simulated historical date. Press <strong>Play</strong> to run through the mission or tap the orbital map to jump to another day.
           </p>
           <div className="hero__progress" aria-hidden="true">
             <span style={{ width: `${(missionDay / MISSION.days) * 100}%` }} />
@@ -216,18 +216,18 @@ const DashboardBody = memo(function DashboardBody({ profileId, missionDay, at, r
               <CrewAvatar id={profile.id} size={52} />
               <div>
                 <strong>{profile.id}</strong>
-                <p className="meta">{profile.role} · tripulante ficticio</p>
+                <p className="meta">{profile.role} · fictional crew member</p>
               </div>
             </div>
           )}
         </div>
-        <OrbitScene progress={missionDay / MISSION.days} label={`Ilustración: la nave ha recorrido ${Math.round((missionDay / MISSION.days) * 100)} % de la órbita de la misión.`} />
+        <OrbitScene progress={missionDay / MISSION.days} label={`Illustration: the spacecraft has covered ${Math.round((missionDay / MISSION.days) * 100)}% of the mission orbit.`} />
       </section>
 
       {unavailable?.status === "error" && (
         <div style={{ marginBottom: "var(--space-4)" }}>
-          <Banner tone="error" title={unavailable.error.unavailable ? "Servicio no disponible" : "No se pudieron cargar los datos"}>
-            {unavailable.error.message} No se muestran datos nuevos hasta recuperar la conexión.
+          <Banner tone="error" title={unavailable.error.unavailable ? "Service unavailable" : "Could not load the data"}>
+            {unavailable.error.message} No new data is shown until the connection is restored.
             {unavailable.error.body.request_id && <span className="mono"> · ref {unavailable.error.body.request_id}</span>}
           </Banner>
         </div>
@@ -249,18 +249,18 @@ const DashboardBody = memo(function DashboardBody({ profileId, missionDay, at, r
                 }}
               />
             ))
-          : INDICATORS.map((i) => <Skeleton key={i.key} label={`Cargando ${i.label}`} height={190} />)}
+          : INDICATORS.map((i) => <Skeleton key={i.key} label={`Loading ${i.label}`} height={190} />)}
       </section>
 
       <div className="detail-grid">
         <Card>
           <div className="row" style={{ justifyContent: "space-between", marginBottom: "var(--space-3)" }}>
             <h2>{ind.label}</h2>
-            <Segmented label="Periodo de la gráfica" value={range} onChange={setRange} options={RANGES.map((r) => ({ value: r.value, label: r.label }))} />
+            <Segmented label="Chart period" value={range} onChange={setRange} options={RANGES.map((r) => ({ value: r.value, label: r.label }))} />
           </div>
           {history.data ? (
             valid === 0 ? (
-              <EmptyState title="Sin valores válidos en este periodo" />
+              <EmptyState title="No valid values in this period" />
             ) : (
               <IndicatorChart
                 indicator={selected}
@@ -273,32 +273,32 @@ const DashboardBody = memo(function DashboardBody({ profileId, missionDay, at, r
                 brush={range === "all"}
                 dimmed={history.status === "loading"}
                 height={range === "all" ? 320 : 280}
-                summary={`${ind.label} de los días ${fromDay} a ${missionDay}: ${valid} días con valor válido y ${points.length - valid} sin valor.`}
+                summary={`${ind.label} from day ${fromDay} to ${missionDay}: ${valid} days with a valid value and ${points.length - valid} without.`}
               />
             )
           ) : (
-            <Skeleton height={280} label="Cargando gráfica" />
+            <Skeleton height={280} label="Loading chart" />
           )}
           {pickedDay !== null ? (
             <DayDetail indicator={selected} day={pickedDay} rows={rows} onMove={(d) => setPickedDay(Math.min(missionDay, Math.max(1, d)))} onClose={() => setPickedDay(null)} />
           ) : (
             <p className="meta" style={{ marginTop: "var(--space-2)" }}>
-              Haz clic en un punto para ver su procedencia. <Link to={`/historial?indicador=${selected}`}>Ver tabla completa</Link>
+              Click a point to see its provenance. <Link to={`/history?indicator=${selected}`}>View full table</Link>
             </p>
           )}
         </Card>
         <Card>
-          <h2 style={{ marginBottom: "var(--space-3)" }}>Comparación con tu historial</h2>
+          <h2 style={{ marginBottom: "var(--space-3)" }}>Comparison with your history</h2>
           <div aria-live="polite">
-            {cmp ? <ComparisonPanel comparison={cmp} references={references} /> : <Skeleton height={160} label="Calculando comparación" />}
+            {cmp ? <ComparisonPanel comparison={cmp} references={references} /> : <Skeleton height={160} label="Calculating comparison" />}
           </div>
         </Card>
       </div>
 
       <Card className="stack" style={{ marginTop: "var(--space-4)" }}>
         <div>
-          <h2>Mapa de la misión</h2>
-          <p className="meta">La misión completa en una órbita: cada sector es un día, cada anillo un indicador y el satélite marca el día actual. Pasa el cursor para leer los valores; haz clic para viajar a ese día.</p>
+          <h2>Mission map</h2>
+          <p className="meta">The whole mission in one orbit: each sector is a day, each ring an indicator, and the satellite marks the current day. Hover to read the values; click to jump to that day.</p>
         </div>
         {history.data ? (
           <OrbitMap
@@ -314,7 +314,7 @@ const DashboardBody = memo(function DashboardBody({ profileId, missionDay, at, r
             }}
           />
         ) : (
-          <Skeleton height={360} label="Cargando mapa" />
+          <Skeleton height={360} label="Loading map" />
         )}
       </Card>
     </>

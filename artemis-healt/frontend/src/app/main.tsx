@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     element: <AppShell />,
     children: [
       { path: "/", element: <DashboardPage /> },
-      { path: "/registrar", element: <RecordPage /> },
-      { path: "/historial", element: <HistoryPage /> },
-      { path: "/aprender", element: <EducationPage /> },
-      { path: "/componentes", element: <GalleryPage /> },
-      { path: "*", element: <EmptyState title="Página no encontrada">Usa la navegación para volver.</EmptyState> },
+      { path: "/log", element: <RecordPage /> },
+      { path: "/history", element: <HistoryPage /> },
+      { path: "/learn", element: <EducationPage /> },
+      { path: "/components", element: <GalleryPage /> },
+      { path: "*", element: <EmptyState title="Page not found">Use the navigation to go back.</EmptyState> },
     ],
   },
 ]);

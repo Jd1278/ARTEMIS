@@ -46,12 +46,12 @@ function ChartTooltip({ active, payload, label, unit, labelText }: { active?: bo
   const p = payload[0].payload;
   return (
     <div className="chart-tip">
-      <strong>{p.excluded ? "Excluido" : p.value == null ? "Sin dato" : `${formatNumber(p.value)} ${unit}`}</strong>
+      <strong>{p.excluded ? "Excluded" : p.value == null ? "No data" : `${formatNumber(p.value)} ${unit}`}</strong>
       <span>
-        {labelText} · día {label}
+        {labelText} · day {label}
       </span>
-      {p.excluded && <span>Imputado o fuera de dominio: no se usa.</span>}
-      {p.reference && <span>Usado en la mediana</span>}
+      {p.excluded && <span>Imputed or out of range: not used.</span>}
+      {p.reference && <span>Used in the median</span>}
     </div>
   );
 }
@@ -85,7 +85,7 @@ export function IndicatorChart({ indicator, points, baseline, referenceRange, cu
                 stroke="var(--accent)"
                 strokeOpacity={0.25}
                 strokeDasharray="2 4"
-                label={{ value: "días de referencia", position: "insideTopLeft", fill: "var(--muted)", fontSize: 11 }}
+                label={{ value: "reference days", position: "insideTopLeft", fill: "var(--muted)", fontSize: 11 }}
               />
             )}
             <XAxis dataKey="day" stroke="var(--muted)" tick={{ fill: "var(--muted)", fontSize: 12 }} tickLine={false} minTickGap={16} />
@@ -110,7 +110,7 @@ export function IndicatorChart({ indicator, points, baseline, referenceRange, cu
                 y={baseline}
                 stroke="var(--chart-ref)"
                 strokeDasharray="6 4"
-                label={{ value: `mediana ${formatNumber(baseline)}`, fill: "var(--muted)", fontSize: 12, position: "insideBottomRight" }}
+                label={{ value: `median ${formatNumber(baseline)}`, fill: "var(--muted)", fontSize: 12, position: "insideBottomRight" }}
               />
             )}
             {selectedDay != null && <ReferenceLine x={selectedDay} stroke="var(--text)" strokeWidth={1.5} />}
@@ -149,7 +149,7 @@ export function IndicatorChart({ indicator, points, baseline, referenceRange, cu
                 fill="var(--surface-sunken)"
                 travellerWidth={10}
                 startIndex={Math.max(0, points.length - 30)}
-                tickFormatter={(d: number) => `día ${d}`}
+                tickFormatter={(d: number) => `day ${d}`}
               />
             )}
           </LineChart>
@@ -167,7 +167,7 @@ export function IndicatorChart({ indicator, points, baseline, referenceRange, cu
             <svg width="22" height="10" aria-hidden="true">
               <line x1="0" y1="5" x2="22" y2="5" stroke="var(--chart-ref)" strokeWidth="1.5" strokeDasharray="5 3" />
             </svg>
-            Mediana personal
+            Personal median
           </span>
         )}
         {referenceRange && (
@@ -175,10 +175,10 @@ export function IndicatorChart({ indicator, points, baseline, referenceRange, cu
             <svg width="14" height="10" aria-hidden="true">
               <rect width="14" height="10" fill="var(--accent)" fillOpacity="0.15" />
             </svg>
-            Días de referencia (punto relleno = usado)
+            Reference days (filled dot = used)
           </span>
         )}
-        <span>Huecos = sin valor válido; no se rellenan.</span>
+        <span>Gaps = no valid value; never filled in.</span>
       </figcaption>
     </figure>
   );

@@ -157,8 +157,8 @@ export function OrbitMap({ observations, missionDay, selected, onPickDay, onPick
 
   const valueText = (r: RowData, day: number) => {
     const o = r.byDay.get(day);
-    if (!o) return "Sin registro";
-    if (o.value === null) return "Excluido";
+    if (!o) return "No entry";
+    if (o.value === null) return "Excluded";
     return formatValue(r.key, o.value);
   };
 
@@ -174,10 +174,10 @@ export function OrbitMap({ observations, missionDay, selected, onPickDay, onPick
         className="orbit-map__plot"
         tabIndex={0}
         role="group"
-        aria-roledescription="mapa orbital"
-        aria-label={`Mapa orbital de la misión: ${MISSION.days} días en sentido horario desde arriba; anillos de fuera hacia dentro: ${rows
+        aria-roledescription="orbital map"
+        aria-label={`Orbital mission map: ${MISSION.days} days clockwise from the top; rings from outside in: ${rows
           .map((r) => r.label)
-          .join(", ")}. Flechas izquierda y derecha cambian de día (Mayús salta 7), arriba y abajo cambian de anillo, Intro va a ese día.`}
+          .join(", ")}. Left and right arrows change the day (Shift jumps 7), up and down change the ring, Enter jumps to that day.`}
         onKeyDown={onKey}
         onFocus={() => {
           setFocused(true);
@@ -217,7 +217,7 @@ export function OrbitMap({ observations, missionDay, selected, onPickDay, onPick
             return <line key={d} x1={x0} y1={y0} x2={x1} y2={y1} stroke="var(--border-strong)" strokeWidth={1} />;
           })}
           <text x={C} y={10} textAnchor="middle" className="orbit-map__start">
-            día 1 →
+            day 1 →
           </text>
 
           <CellsLayer rows={rows} missionDay={missionDay} />
@@ -252,7 +252,7 @@ export function OrbitMap({ observations, missionDay, selected, onPickDay, onPick
           {/* centre readout */}
           <g className="orbit-map__center" pointerEvents="none">
             <text x={C} y={C - 26} textAnchor="middle" className="orbit-map__day">
-              Día {readDay}
+              Day {readDay}
             </text>
             <text x={C} y={C - 8} textAnchor="middle" className="orbit-map__date">
               {formatDate(missionDayToDate(readDay))}
@@ -269,7 +269,7 @@ export function OrbitMap({ observations, missionDay, selected, onPickDay, onPick
 
       <div className="orbit-map__side">
         <p className="meta">
-          {active ? `Día ${readDay}` : `Día ${missionDay} (actual)`} · anillos de fuera hacia dentro
+          {active ? `Day ${readDay}` : `Day ${missionDay} (current)`} · rings from outside in
         </p>
         <ul className="orbit-map__list">
           {rows.map((r, i) => (
@@ -292,18 +292,18 @@ export function OrbitMap({ observations, missionDay, selected, onPickDay, onPick
           ))}
         </ul>
         <div className="orbit-map__legend">
-          <span className="meta">Bajo</span>
+          <span className="meta">Low</span>
           {STEPS.map((_, i) => (
             <span key={i} className="orbit-map__swatch" style={{ background: stepColor(i) }} aria-hidden="true" />
           ))}
-          <span className="meta">Alto</span>
+          <span className="meta">High</span>
           <span className="orbit-map__swatch orbit-map__swatch--hatch" aria-hidden="true" />
-          <span className="meta">Excluido</span>
+          <span className="meta">Excluded</span>
           <span className="orbit-map__swatch orbit-map__swatch--empty" aria-hidden="true" />
-          <span className="meta">Sin registro</span>
+          <span className="meta">No entry</span>
         </div>
         <p className="meta">
-          La intensidad solo indica magnitud relativa dentro de cada anillo, hasta el día {missionDay}; no significa mejor ni peor. Rangos:{" "}
+          Intensity only shows relative magnitude within each ring, up to day {missionDay}; it does not mean better or worse. Ranges:{" "}
           {rows.map((r, i) => (
             <span key={r.key}>
               {i > 0 && " · "}
@@ -314,7 +314,7 @@ export function OrbitMap({ observations, missionDay, selected, onPickDay, onPick
         </p>
       </div>
       <p className="visually-hidden" aria-live="polite">
-        {focused ? `${rows[focus.ring].label}, día ${focus.day}: ${valueText(rows[focus.ring], focus.day)}` : ""}
+        {focused ? `${rows[focus.ring].label}, day ${focus.day}: ${valueText(rows[focus.ring], focus.day)}` : ""}
       </p>
     </div>
   );

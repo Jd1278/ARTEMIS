@@ -65,7 +65,7 @@ export function compareBaseline({ observations, profileId, indicator, at, origin
   };
 
   if (!current) {
-    return { ...base, explanation: "No hay un valor válido hasta el día seleccionado." };
+    return { ...base, explanation: "There is no valid value up to the selected day." };
   }
 
   // Reference days are counted relative to the day of the current observation.
@@ -93,7 +93,7 @@ export function compareBaseline({ observations, profileId, indicator, at, origin
   if (refs.length < BASELINE_V1.minimum_days) {
     return {
       ...withPeriod,
-      explanation: `Historial insuficiente: ${refs.length} de ${BASELINE_V1.minimum_days} días válidos necesarios en los ${BASELINE_V1.window_days} días previos.`,
+      explanation: `Insufficient history: ${refs.length} of ${BASELINE_V1.minimum_days} valid days required in the previous ${BASELINE_V1.window_days} days.`,
     };
   }
 
@@ -104,6 +104,6 @@ export function compareBaseline({ observations, profileId, indicator, at, origin
     baseline,
     difference,
     sufficient: true,
-    explanation: `Mediana de ${refs.length} días válidos previos (máximo ${BASELINE_V1.max_days}, ventana de ${BASELINE_V1.window_days} días, sin el día actual ni valores excluidos).`,
+    explanation: `Median of ${refs.length} previous valid days (up to ${BASELINE_V1.max_days}, ${BASELINE_V1.window_days}-day window, excluding the current day and excluded values).`,
   };
 }

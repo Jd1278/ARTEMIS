@@ -63,25 +63,25 @@ export function MissionTimeline() {
         <OrbitRing day={missionDay} />
         <div>
           <label className="field__label" htmlFor="day-range">
-            Día de misión <span className="timeline__day mono">{missionDay}</span>
+            Mission day <span className="timeline__day mono">{missionDay}</span>
             <span className="meta"> / {MISSION.days}</span>
           </label>
-          <p className="meta">Fecha histórica simulada: {formatDate(missionDayToDate(missionDay))}</p>
+          <p className="meta">Simulated historical date: {formatDate(missionDayToDate(missionDay))}</p>
         </div>
         <div className="timeline__buttons">
-          <button type="button" className="btn" aria-label="Día anterior" onClick={() => setMissionDay(missionDay - 1)} disabled={missionDay <= 1}>
+          <button type="button" className="btn" aria-label="Previous day" onClick={() => setMissionDay(missionDay - 1)} disabled={missionDay <= 1}>
             <IconChevron dir="left" size={20} />
           </button>
           <button type="button" className="btn btn--primary timeline__play" onClick={toggle} aria-pressed={playing}>
             {playing ? <IconPause size={18} /> : <IconPlay size={18} />}
-            {playing ? "Pausar" : "Reproducir"}
+            {playing ? "Pause" : "Play"}
           </button>
-          <button type="button" className="btn" aria-label="Día siguiente" onClick={() => setMissionDay(missionDay + 1)} disabled={missionDay >= MISSION.days}>
+          <button type="button" className="btn" aria-label="Next day" onClick={() => setMissionDay(missionDay + 1)} disabled={missionDay >= MISSION.days}>
             <IconChevron size={20} />
           </button>
           <label className="timeline__speed">
-            <span className="visually-hidden">Velocidad de reproducción</span>
-            <span aria-hidden="true" className="meta">Velocidad</span>
+            <span className="visually-hidden">Playback speed</span>
+            <span aria-hidden="true" className="meta">Speed</span>
             <select className="input" value={speed} onChange={(e) => setSpeed(e.target.value)}>
               {SPEEDS.map((s) => (
                 <option key={s.id} value={s.id}>
@@ -104,7 +104,7 @@ export function MissionTimeline() {
             setPlaying(false);
             setMissionDay(Number(e.target.value));
           }}
-          aria-valuetext={`Día ${missionDay} de ${MISSION.days}, ${formatDate(missionDayToDate(missionDay))}`}
+          aria-valuetext={`Day ${missionDay} of ${MISSION.days}, ${formatDate(missionDayToDate(missionDay))}`}
           style={{ "--progress": `${((missionDay - 1) / (MISSION.days - 1)) * 100}%` } as CSSProperties}
         />
         <div className="timeline__ticks" aria-hidden="true">
@@ -116,7 +116,7 @@ export function MissionTimeline() {
         </div>
       </div>
       <span className="visually-hidden" aria-live="polite">
-        {playing ? "" : `Día ${missionDay}`}
+        {playing ? "" : `Day ${missionDay}`}
       </span>
     </div>
   );

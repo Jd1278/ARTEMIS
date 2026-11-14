@@ -50,16 +50,16 @@ function newDraft(profileId: string, missionDay: number, indicator: IndicatorKey
 function validate(d: Draft): Record<string, string> {
   const errors: Record<string, string> = {};
   const ind = INDICATOR_BY_KEY[d.indicator];
-  if (d.value.trim() === "") errors.value = "Introduce un valor.";
+  if (d.value.trim() === "") errors.value = "Enter a value.";
   else {
     const err = validateValue(ind, Number(d.value.replace(",", ".")));
     if (err) errors.value = err;
   }
   const t = Date.parse(`${d.time}:00Z`);
-  if (!d.time || Number.isNaN(t)) errors.timestamp = "Introduce una fecha y hora válidas.";
+  if (!d.time || Number.isNaN(t)) errors.timestamp = "Enter a valid date and time.";
   else {
     const day = dateToMissionDay(d.time);
-    if (day < 1 || day > MISSION.days) errors.timestamp = `La fecha debe estar dentro de la misión (días 1 a ${MISSION.days}).`;
+    if (day < 1 || day > MISSION.days) errors.timestamp = `The date must be within the mission (days 1 to ${MISSION.days}).`;
   }
   return errors;
 }
@@ -114,14 +114,14 @@ export function RecordPage() {
   return (
     <>
       <div className="page-head">
-        <h1>Registrar observación</h1>
-        <p className="meta">Registro manual autoinformado. Se guarda solo cuando el servidor lo confirma.</p>
+        <h1>Log an observation</h1>
+        <p className="meta">Manual self-reported entry. It is only saved once the server confirms it.</p>
       </div>
 
       <div className="detail-grid">
         <Card>
           <form className="stack" onSubmit={submit} noValidate>
-            <Field label="Perfil" hint="Solo perfiles ficticios de la demo.">
+            <Field label="Profile" hint="Fictional demo profiles only.">
               {(a) => (
                 <select {...a} className="input" value={draft.profile_id} onChange={(e) => update({ profile_id: e.target.value })}>
                   {PROFILES.map((p) => (
@@ -134,7 +134,7 @@ export function RecordPage() {
             </Field>
 
             <fieldset className="ind-picker">
-              <legend className="field__label">Indicador</legend>
+              <legend className="field__label">Indicator</legend>
               {INDICATORS.map((i) => (
                 <label key={i.key} className={`ind-picker__item ${draft.indicator === i.key ? "is-checked" : ""}`}>
                   <input type="radio" name="indicator" value={i.key} checked={draft.indicator === i.key} aria-label={`${i.label}, ${i.unit_label}`} onChange={() => {
@@ -155,25 +155,25 @@ export function RecordPage() {
               ))}
             </fieldset>
 
-            <Field label={`Valor (${ind.unit_label})`} hint={SCALE_HELP[draft.indicator]} error={errors.value}>
+            <Field label={`Value (${ind.unit_label})`} hint={SCALE_HELP[draft.indicator]} error={errors.value}>
               {(a) => <ScaleInput indicator={draft.indicator} value={draft.value} onChange={(v) => update({ value: v })} inputProps={a} onBlur={() => setTouched(true)} />}
             </Field>
 
-            <Field label="Fecha y hora (UTC)" hint="Fecha histórica de la misión simulada. Por defecto, el día seleccionado." error={errors.timestamp}>
+            <Field label="Date and time (UTC)" hint="Historical date of the simulated mission. Defaults to the selected day." error={errors.timestamp}>
               {(a) => (
                 <input {...a} className="input" type="datetime-local" value={draft.time} onChange={(e) => update({ time: e.target.value })} onBlur={() => setTouched(true)} />
               )}
             </Field>
 
             {(errors.unit || errors.context || errors.profile_id || errors.id) && (
-              <Banner tone="error" title="El servidor rechazó campos">
+              <Banner tone="error" title="The server rejected some fields">
                 {[errors.unit, errors.context, errors.profile_id, errors.id].filter(Boolean).join(" ")}
               </Banner>
             )}
 
             <div className="row">
               <Button type="submit" variant="primary" disabled={save.kind === "saving"}>
-                {save.kind === "saving" ? "Guardando…" : save.kind === "failed" ? "Reintentar" : "Guardar"}
+                {save.kind === "saving" ? "Saving…" : save.kind === "failed" ? "Retry" : "Save"}
               </Button>
               <Button
                 variant="ghost"
@@ -184,37 +184,37 @@ export function RecordPage() {
                   setSave({ kind: "idle" });
                 }}
               >
-                Descartar borrador
+                Discard draft
               </Button>
             </div>
             <p className="meta">
-              Identificador del borrador: <span className="mono">{draft.id}</span>. Se reutiliza en cada reintento para no duplicar.
+              Draft ID: <span className="mono">{draft.id}</span>. It is reused on every retry to avoid duplicates.
             </p>
           </form>
         </Card>
 
         <div className="stack" aria-live="polite">
           {save.kind === "saved" && (
-            <Banner title={save.status === 201 ? "Guardado" : "Ya estaba guardado"} icon="✓">
-              {formatValue(save.observation.indicator, save.observation.value)} de {INDICATOR_BY_KEY[save.observation.indicator].label.toLowerCase()} para{" "}
+            <Banner title={save.status === 201 ? "Saved" : "Already saved"} icon="✓">
+              {formatValue(save.observation.indicator, save.observation.value)} of {INDICATOR_BY_KEY[save.observation.indicator].label.toLowerCase()} for{" "}
               {save.observation.profile_id}, {formatDateTime(save.observation.timestamp)}.{" "}
-              {save.status === 200 && "El servidor reconoció un envío idéntico y no lo duplicó. "}
-              <Link to={`/historial?indicador=${save.observation.indicator}`}>Ver en historial</Link>
+              {save.status === 200 && "The server recognised an identical submission and did not duplicate it. "}
+              <Link to={`/history?indicator=${save.observation.indicator}`}>View in history</Link>
             </Banner>
           )}
           {save.kind === "failed" && (
-            <Banner tone="error" title="NO GUARDADO">
+            <Banner tone="error" title="NOT SAVED">
               {save.error.status === 409
-                ? "Ya existe una observación con este identificador y contenido distinto. Descarta el borrador para crear uno nuevo."
+                ? "An observation with this ID already exists with different content. Discard the draft to create a new one."
                 : save.error.status === 422
-                  ? "El servidor rechazó la observación. Revisa los campos marcados."
-                  : `${save.error.message} Tu borrador se conserva en esta sesión; puedes reintentar.`}
+                  ? "The server rejected the observation. Check the highlighted fields."
+                  : `${save.error.message} Your draft is kept for this session; you can retry.`}
               {save.error.body.request_id && <span className="mono"> · ref {save.error.body.request_id}</span>}
             </Banner>
           )}
-          <Banner title="Antes de registrar">
-            Los registros manuales no se comparan con los datos simulados. Con menos de 7 días manuales válidos verás «historial insuficiente». Esta app no interpreta
-            el valor como bueno o malo.
+          <Banner title="Before you log">
+            Manual entries are not compared with the simulated data. With fewer than 7 valid manual days you will see "insufficient history". This app does not
+            interpret the value as good or bad.
           </Banner>
         </div>
       </div>

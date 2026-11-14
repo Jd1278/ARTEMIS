@@ -14,7 +14,7 @@ const isIndicator = (v: string | null): v is IndicatorKey => INDICATORS.some((i)
 export function HistoryPage() {
   const { profileId, missionDay, revision } = useMission();
   const [params, setParams] = useSearchParams();
-  const indicator: IndicatorKey = isIndicator(params.get("indicador")) ? (params.get("indicador") as IndicatorKey) : "sleep_duration_h";
+  const indicator: IndicatorKey = isIndicator(params.get("indicator")) ? (params.get("indicator") as IndicatorKey) : "sleep_duration_h";
   const [origin, setOrigin] = useState<OriginType>("synthetic");
   const [fromDay, setFromDay] = useState(Math.max(1, missionDay - 29));
   const [toDay, setToDay] = useState(missionDay);
@@ -42,22 +42,22 @@ export function HistoryPage() {
   return (
     <>
       <div className="page-head">
-        <h1>Historial</h1>
+        <h1>History</h1>
         <p className="meta">
-          Perfil {profileId}. Orden temporal. Filtros inclusivos. Un punto por día de misión (la última observación del día).
+          Profile {profileId}. Chronological order. Inclusive filters. One point per mission day (the last observation of the day).
         </p>
       </div>
 
-      <Card className="stack" as="section" aria-label="Filtros">
+      <Card className="stack" as="section" aria-label="Filters">
         <div className="filters">
-          <Field label="Indicador">
+          <Field label="Indicator">
             {(a) => (
               <select
                 {...a}
                 className="input"
                 value={indicator}
                 onChange={(e) => {
-                  params.set("indicador", e.target.value);
+                  params.set("indicator", e.target.value);
                   setParams(params, { replace: true });
                 }}
               >
@@ -69,7 +69,7 @@ export function HistoryPage() {
               </select>
             )}
           </Field>
-          <Field label="Origen" hint="Los orígenes no se mezclan.">
+          <Field label="Origin" hint="Origins are never mixed.">
             {(a) => (
               <select {...a} className="input" value={origin} onChange={(e) => setOrigin(e.target.value as OriginType)}>
                 <option value="synthetic">{ORIGIN_LABEL.synthetic}</option>
@@ -77,24 +77,24 @@ export function HistoryPage() {
               </select>
             )}
           </Field>
-          <Field label="Desde el día">
+          <Field label="From day">
             {(a) => <input {...a} className="input" type="number" min={1} max={MISSION.days} value={fromDay} onChange={(e) => setFromDay(Number(e.target.value) || 1)} />}
           </Field>
-          <Field label="Hasta el día">
+          <Field label="To day">
             {(a) => <input {...a} className="input" type="number" min={1} max={MISSION.days} value={toDay} onChange={(e) => setToDay(Number(e.target.value) || 1)} />}
           </Field>
         </div>
         <div className="row" style={{ justifyContent: "space-between" }}>
           <p className="meta" aria-live="polite">
-            {state.status === "loading" ? "Cargando…" : `${rows.length} días con registro, ${excluded} con valor excluido, días ${lo}–${hi}.`}
+            {state.status === "loading" ? "Loading…" : `${rows.length} days with entries, ${excluded} with an excluded value, days ${lo}–${hi}.`}
           </p>
           <Segmented
-            label="Vista"
+            label="View"
             value={view}
             onChange={setView}
             options={[
-              { value: "chart", label: "Gráfica" },
-              { value: "table", label: "Tabla" },
+              { value: "chart", label: "Chart" },
+              { value: "table", label: "Table" },
             ]}
           />
         </div>
@@ -102,15 +102,15 @@ export function HistoryPage() {
 
       <div style={{ marginTop: "var(--space-4)" }}>
         {state.status === "error" && (
-          <Banner tone="error" title="No se pudo cargar el historial">
+          <Banner tone="error" title="Could not load the history">
             {state.error.message}
           </Banner>
         )}
         {state.status === "loading" && !state.data && <Skeleton height={300} />}
         {state.data &&
           (rows.length === 0 ? (
-            <EmptyState title="Sin registros para estos filtros">
-              {origin === "user_report" && !hasManual ? "Aún no hay registros manuales para este perfil." : "Prueba con otro periodo u origen."}
+            <EmptyState title="No entries for these filters">
+              {origin === "user_report" && !hasManual ? "There are no manual entries for this profile yet." : "Try another period or origin."}
             </EmptyState>
           ) : view === "chart" ? (
             <Card>
@@ -120,24 +120,24 @@ export function HistoryPage() {
                 height={340}
                 brush
                 dimmed={state.status === "loading"}
-                summary={`${ind.label}, ${ORIGIN_LABEL[origin]}, días ${lo} a ${hi}: ${rows.length - excluded} valores válidos y ${excluded} excluidos.`}
+                summary={`${ind.label}, ${ORIGIN_LABEL[origin]}, days ${lo} to ${hi}: ${rows.length - excluded} valid values and ${excluded} excluded.`}
               />
             </Card>
           ) : (
             <div className="table-wrap">
               <table className="table">
                 <caption>
-                  {ind.label} ({ind.unit_label}) · {ORIGIN_LABEL[origin]} · días {lo}–{hi}
+                  {ind.label} ({ind.unit_label}) · {ORIGIN_LABEL[origin]} · days {lo}–{hi}
                 </caption>
                 <thead>
                   <tr>
-                    <th scope="col">Día</th>
-                    <th scope="col">Fecha y hora</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col">Original excluido</th>
-                    <th scope="col">Origen</th>
-                    <th scope="col">Calidad</th>
-                    <th scope="col">Fuente</th>
+                    <th scope="col">Day</th>
+                    <th scope="col">Date and time</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Excluded original</th>
+                    <th scope="col">Origin</th>
+                    <th scope="col">Quality</th>
+                    <th scope="col">Source</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -153,7 +153,7 @@ export function HistoryPage() {
                       <td>
                         <QualityBadge flags={o.quality_flags} />
                       </td>
-                      <td className="meta">{o.source_file ? `${o.source_file}, fila ${o.source_row}` : "Captura manual"}</td>
+                      <td className="meta">{o.source_file ? `${o.source_file}${o.source_row ? `, row ${o.source_row}` : ""}` : "Manual entry"}</td>
                     </tr>
                   ))}
                 </tbody>

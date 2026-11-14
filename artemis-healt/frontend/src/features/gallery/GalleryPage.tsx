@@ -38,7 +38,7 @@ const CMP_OK: Comparison = {
   period_to: "2026-04-28T06:30:00Z",
   sufficient: true,
   reference_observation_ids: [],
-  explanation: "Mediana de 14 días válidos previos (máximo 14, ventana de 30 días, sin el día actual ni valores excluidos).",
+  explanation: "Median of 14 previous valid days (up to 14, 30-day window, excluding the current day and excluded values).",
 };
 const CMP_LOW: Comparison = {
   ...CMP_OK,
@@ -46,7 +46,7 @@ const CMP_LOW: Comparison = {
   difference: null,
   days_used: 3,
   sufficient: false,
-  explanation: "Historial insuficiente: 3 de 7 días válidos necesarios en los 30 días previos.",
+  explanation: "Insufficient history: 3 of 7 valid days required in the previous 30 days.",
 };
 const POINTS = Array.from({ length: 20 }, (_, i) => ({
   day: 41 + i,
@@ -61,12 +61,12 @@ export function GalleryPage() {
   return (
     <>
       <div className="page-head">
-        <h1>Galería de componentes</h1>
-        <p className="meta">Página interna con datos fijos para revisión visual y de accesibilidad.</p>
+        <h1>Component gallery</h1>
+        <p className="meta">Internal page with fixed data for visual and accessibility review.</p>
       </div>
       <div className="stack">
         <Card className="stack">
-          <h2>Pruebas de estado</h2>
+          <h2>State tests</h2>
           <label className="row">
             <input
               type="checkbox"
@@ -78,26 +78,26 @@ export function GalleryPage() {
               }}
               style={{ width: 20, height: 20 }}
             />
-            Simular caída del servidor (solo modo demo local)
+            Simulate a server outage (local demo mode only)
           </label>
         </Card>
 
         <Card className="stack">
-          <h2>Botones y controles</h2>
+          <h2>Buttons and controls</h2>
           <div className="row">
-            <Button variant="primary">Primario</Button>
-            <Button>Secundario</Button>
-            <Button variant="ghost">Enlace</Button>
-            <Button disabled>Deshabilitado</Button>
+            <Button variant="primary">Primary</Button>
+            <Button>Secondary</Button>
+            <Button variant="ghost">Link</Button>
+            <Button disabled>Disabled</Button>
           </div>
-          <Segmented label="Ejemplo" value={seg} onChange={setSeg} options={[{ value: "a", label: "Gráfica" }, { value: "b", label: "Tabla" }]} />
-          <Field label="Campo con error" hint="Escala 1–7, entero." error="Debe ser un número entero.">
+          <Segmented label="Example" value={seg} onChange={setSeg} options={[{ value: "a", label: "Chart" }, { value: "b", label: "Table" }]} />
+          <Field label="Field with error" hint="Scale 1–7, whole number." error="Must be a whole number.">
             {(a) => <input {...a} className="input" defaultValue="3.5" />}
           </Field>
         </Card>
 
         <Card className="stack">
-          <h2>Insignias</h2>
+          <h2>Badges</h2>
           <div className="row">
             <SimBadge />
             <OriginBadge origin="synthetic" method="import" />
@@ -109,24 +109,24 @@ export function GalleryPage() {
         </Card>
 
         <Card className="stack">
-          <h2>Mensajes y estados</h2>
-          <Banner title="Información">Mensaje informativo neutro.</Banner>
-          <Banner tone="error" title="NO GUARDADO">
-            La base de datos no está disponible. Tu borrador se conserva en esta sesión.
+          <h2>Messages and states</h2>
+          <Banner title="Information">Neutral informational message.</Banner>
+          <Banner tone="error" title="NOT SAVED">
+            The database is unavailable. Your draft is kept for this session.
           </Banner>
-          <EmptyState title="Sin registros para estos filtros">Prueba con otro periodo.</EmptyState>
+          <EmptyState title="No entries for these filters">Try another period.</EmptyState>
           <Skeleton height={80} />
         </Card>
 
         <Card className="stack">
-          <h2>Comparación</h2>
+          <h2>Comparison</h2>
           <ComparisonPanel comparison={CMP_OK} />
           <ComparisonPanel comparison={CMP_LOW} />
         </Card>
 
         <Card>
-          <h2>Gráfica con huecos</h2>
-          <IndicatorChart indicator="sleep_duration_h" points={POINTS} baseline={7.1} summary="Ejemplo de gráfica con tres días sin valor." />
+          <h2>Chart with gaps</h2>
+          <IndicatorChart indicator="sleep_duration_h" points={POINTS} baseline={7.1} summary="Example chart with three days without a value." />
         </Card>
       </div>
     </>

@@ -115,7 +115,7 @@ export function ComparisonStrip({ references, baseline, current, format, domain 
       ))}
       <line x1={x(baseline)} x2={x(baseline)} y1={8} y2={44} stroke="var(--text)" strokeWidth={2} />
       <text x={x(baseline)} y={58} textAnchor="middle" fontSize={11} fill="var(--muted)">
-        mediana {format(baseline)}
+        median {format(baseline)}
       </text>
       <circle cx={x(current)} cy={30} r={7} fill="none" stroke="var(--accent)" strokeWidth={3} />
       <text x={pad} y={58} fontSize={11} fill="var(--muted)" textAnchor="start" opacity={x(baseline) - pad > 70 ? 1 : 0}>

@@ -54,7 +54,7 @@ export function SimBadge() {
 }
 
 export function OriginBadge({ origin, method }: { origin: OriginType; method?: CaptureMethod }) {
-  const methodLabel = method === "import" ? "importado" : method === "manual" ? "manual" : method;
+  const methodLabel = method === "import" ? "imported" : method === "manual" ? "manual" : method;
   return (
     <span className={`badge ${origin === "synthetic" ? "badge--sim" : ""}`}>
       {ORIGIN_LABEL[origin]}
@@ -97,7 +97,7 @@ export function EmptyState({ title, children }: { title: string; children?: Reac
   );
 }
 
-export function Skeleton({ label = "Cargando…", height }: { label?: string; height?: number }) {
+export function Skeleton({ label = "Loading…", height }: { label?: string; height?: number }) {
   return (
     <div className="skeleton" style={height ? { minHeight: height } : undefined} role="status" aria-live="polite">
       <span className="visually-hidden">{label}</span>

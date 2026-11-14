@@ -10,11 +10,11 @@ export function EducationPage() {
   return (
     <>
       <div className="page-head">
-        <h1>Aprender</h1>
-        <p className="meta">Qué mide cada indicador, cómo se registra y qué no puede decirte.</p>
+        <h1>Learn</h1>
+        <p className="meta">What each indicator measures, how it is logged and what it cannot tell you.</p>
       </div>
       {state.status === "error" && (
-        <Banner tone="error" title="No se pudieron cargar las fichas">
+        <Banner tone="error" title="Could not load the cards">
           {state.error.message}
         </Banner>
       )}
@@ -28,19 +28,19 @@ export function EducationPage() {
                 </div>
                 <dl className="stack" style={{ gap: "var(--space-3)", margin: 0 }}>
                   <div>
-                    <dt className="meta">Qué mide</dt>
+                    <dt className="meta">What it measures</dt>
                     <dd style={{ margin: 0 }}>{c.measures}</dd>
                   </div>
                   <div>
-                    <dt className="meta">Cómo registrarlo</dt>
+                    <dt className="meta">How to log it</dt>
                     <dd style={{ margin: 0 }}>{c.how_to_record}</dd>
                   </div>
                   <div>
-                    <dt className="meta">Escala</dt>
+                    <dt className="meta">Scale</dt>
                     <dd style={{ margin: 0 }}>{c.scale}</dd>
                   </div>
                   <div>
-                    <dt className="meta">Límites</dt>
+                    <dt className="meta">Limits</dt>
                     <dd style={{ margin: 0 }}>
                       <ul style={{ margin: 0, paddingLeft: "1.2em" }}>
                         {c.limits.map((l) => (
@@ -51,7 +51,7 @@ export function EducationPage() {
                   </div>
                 </dl>
                 <p className="meta">
-                  Referencia: {c.reference.url ? <a href={c.reference.url}>{c.reference.citation}</a> : c.reference.citation} ({c.reference.review_status})
+                  Reference: {c.reference.url ? <a href={c.reference.url}>{c.reference.citation}</a> : c.reference.citation} ({c.reference.review_status})
                 </p>
               </Card>
             ))

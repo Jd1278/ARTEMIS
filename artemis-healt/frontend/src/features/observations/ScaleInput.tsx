@@ -4,13 +4,13 @@ import "./scale.css";
 
 // Samn–Perelli descriptors (7-point fatigue checklist).
 const SAMN_PERELLI = [
-  "Totalmente alerta, completamente despierto",
-  "Muy animado, receptivo, pero no en el máximo",
-  "Bien, algo descansado",
-  "Un poco cansado, por debajo de lo óptimo",
-  "Moderadamente cansado, con desgana",
-  "Extremadamente cansado, con dificultad para concentrarse",
-  "Completamente agotado, incapaz de funcionar con eficacia",
+  "Fully alert, wide awake",
+  "Very lively, responsive, but not at peak",
+  "Okay, somewhat fresh",
+  "A little tired, less than fresh",
+  "Moderately tired, let down",
+  "Extremely tired, very difficult to concentrate",
+  "Completely exhausted, unable to function effectively",
 ];
 
 interface Props {
@@ -29,7 +29,7 @@ export function ScaleInput({ indicator, value, onChange, inputProps, onBlur }: P
     const current = Number.isInteger(num(value)) ? num(value) : null;
     return (
       <div className="stack" style={{ gap: "var(--space-2)" }}>
-        <div className="sp-scale" role="radiogroup" aria-label="Fatiga percibida, escala de 1 a 7" aria-describedby={inputProps["aria-describedby"]} id={inputProps.id}>
+        <div className="sp-scale" role="radiogroup" aria-label="Perceived fatigue, scale from 1 to 7" aria-describedby={inputProps["aria-describedby"]} id={inputProps.id}>
           {SAMN_PERELLI.map((desc, i) => {
             const n = i + 1;
             const checked = current === n;
@@ -60,8 +60,8 @@ export function ScaleInput({ indicator, value, onChange, inputProps, onBlur }: P
           })}
         </div>
         <div className="sp-scale__ends meta" aria-hidden="true">
-          <span>Alerta</span>
-          <span>Agotado</span>
+          <span>Alert</span>
+          <span>Exhausted</span>
         </div>
         <p className="sp-scale__desc" aria-live="polite">
           {current ? (
@@ -69,7 +69,7 @@ export function ScaleInput({ indicator, value, onChange, inputProps, onBlur }: P
               <strong>{current}</strong> · {SAMN_PERELLI[current - 1]}
             </>
           ) : (
-            <span className="meta">Elige un número del 1 al 7.</span>
+            <span className="meta">Choose a number from 1 to 7.</span>
           )}
         </p>
       </div>
@@ -78,9 +78,9 @@ export function ScaleInput({ indicator, value, onChange, inputProps, onBlur }: P
 
   const cfg =
     indicator === "stress_vas"
-      ? { min: 0, max: 100, step: 1, left: "Nada de estrés", right: "Máximo imaginable", suffix: "puntos" }
+      ? { min: 0, max: 100, step: 1, left: "No stress", right: "Worst imaginable", suffix: "points" }
       : indicator === "sleep_duration_h"
-        ? { min: 0, max: 14, step: 0.25, left: "0 h", right: "14 h (máx. técnico 24)", suffix: "h" }
+        ? { min: 0, max: 14, step: 0.25, left: "0 h", right: "14 h (technical max 24)", suffix: "h" }
         : { min: 30, max: 120, step: 1, left: "30 lpm", right: "120 lpm", suffix: "lpm" };
   const v = num(value);
   const sliderValue = Number.isFinite(v) && value.trim() !== "" ? Math.min(cfg.max, Math.max(cfg.min, v)) : (cfg.min + cfg.max) / 2;
@@ -99,7 +99,7 @@ export function ScaleInput({ indicator, value, onChange, inputProps, onBlur }: P
           value={sliderValue}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
-          aria-label={`Control deslizante, ${cfg.left} a ${cfg.right}`}
+          aria-label={`Slider, ${cfg.left} to ${cfg.right}`}
           style={{ "--pct": `${pct}%` } as CSSProperties}
         />
         <div className="scale-number">

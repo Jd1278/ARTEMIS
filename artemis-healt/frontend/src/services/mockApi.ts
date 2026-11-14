@@ -38,16 +38,16 @@ const delay = (ms = 120) => new Promise((r) => setTimeout(r, ms));
 async function guard() {
   await delay();
   if (window.__ARTEMIS_SIMULATE_OUTAGE__) {
-    throw new ApiError(503, { code: "database_unavailable", message: "La base de datos no está disponible.", fields: {}, request_id: requestId() });
+    throw new ApiError(503, { code: "database_unavailable", message: "The database is unavailable.", fields: {}, request_id: requestId() });
   }
 }
 
 function invalid(fields: Record<string, string>): never {
-  throw new ApiError(422, { code: "validation_error", message: "La observación no es válida.", fields, request_id: requestId() });
+  throw new ApiError(422, { code: "validation_error", message: "The observation is not valid.", fields, request_id: requestId() });
 }
 
 function notFound(what: string): never {
-  throw new ApiError(404, { code: "not_found", message: `${what} no encontrado.`, fields: {}, request_id: requestId() });
+  throw new ApiError(404, { code: "not_found", message: `${what} not found.`, fields: {}, request_id: requestId() });
 }
 
 const sameContent = (a: Observation, b: NewObservation) =>
@@ -68,7 +68,7 @@ export const mockApi: ArtemisApi = {
 
   async getDashboard(profileId, at) {
     await guard();
-    if (!PROFILES.some((p) => p.id === profileId)) notFound("Perfil");
+    if (!PROFILES.some((p) => p.id === profileId)) notFound("Profile");
     const atMs = Date.parse(at);
     const rows = (await all()).filter((o) => o.profile_id === profileId && Date.parse(o.timestamp) <= atMs);
     const items: DashboardItem[] = INDICATORS.map(({ key }) => {
@@ -87,22 +87,22 @@ export const mockApi: ArtemisApi = {
     await guard();
     const fields: Record<string, string> = {};
     const indicator = INDICATOR_BY_KEY[input.indicator];
-    if (!/^[0-9a-f-]{36}$/i.test(input.id)) fields.id = "UUID no válido.";
-    if (!PROFILES.some((p) => p.id === input.profile_id)) fields.profile_id = "Perfil desconocido.";
-    if (!indicator) fields.indicator = "Indicador desconocido.";
+    if (!/^[0-9a-f-]{36}$/i.test(input.id)) fields.id = "Invalid UUID.";
+    if (!PROFILES.some((p) => p.id === input.profile_id)) fields.profile_id = "Unknown profile.";
+    if (!indicator) fields.indicator = "Unknown indicator.";
     else {
-      if (input.unit !== indicator.unit) fields.unit = "Unidad incompatible con el indicador.";
-      if (input.context !== indicator.context) fields.context = "Contexto incompatible con el indicador.";
+      if (input.unit !== indicator.unit) fields.unit = "Unit not compatible with the indicator.";
+      if (input.context !== indicator.context) fields.context = "Context not compatible with the indicator.";
       const err = validateValue(indicator, input.value);
       if (err) fields.value = err;
     }
-    if (!input.timestamp || Number.isNaN(Date.parse(input.timestamp))) fields.timestamp = "Fecha no válida.";
+    if (!input.timestamp || Number.isNaN(Date.parse(input.timestamp))) fields.timestamp = "Invalid date.";
     if (Object.keys(fields).length) invalid(fields);
 
     const existing = manual.get(input.id);
     if (existing) {
       if (sameContent(existing, input)) return { status: 200, observation: existing };
-      throw new ApiError(409, { code: "conflict", message: "Ya existe una observación con este identificador y contenido distinto.", fields: { id: "UUID en uso." }, request_id: requestId() });
+      throw new ApiError(409, { code: "conflict", message: "An observation with this ID already exists with different content.", fields: { id: "UUID already in use." }, request_id: requestId() });
     }
     const observation: Observation = {
       id: input.id,
@@ -142,6 +142,6 @@ export const mockApi: ArtemisApi = {
 
   async getEducation(indicator) {
     await guard();
-    return EDUCATION_CARDS.find((c) => c.indicator === indicator) ?? notFound("Ficha");
+    return EDUCATION_CARDS.find((c) => c.indicator === indicator) ?? notFound("Card");
   },
 };

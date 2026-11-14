@@ -8,10 +8,10 @@ import { MissionTimeline } from "./MissionTimeline";
 import "./AppShell.css";
 
 const NAV = [
-  { to: "/", label: "Resumen", Icon: IconHome },
-  { to: "/registrar", label: "Registrar", Icon: IconAdd },
-  { to: "/historial", label: "Historial", Icon: IconHistory },
-  { to: "/aprender", label: "Aprender", Icon: IconLearn },
+  { to: "/", label: "Overview", Icon: IconHome },
+  { to: "/log", label: "Log entry", Icon: IconAdd },
+  { to: "/history", label: "History", Icon: IconHistory },
+  { to: "/learn", label: "Learn", Icon: IconLearn },
 ];
 
 export function AppShell() {
@@ -21,10 +21,10 @@ export function AppShell() {
     <div className="shell">
       <SpaceBackground />
       <a className="skip-link" href="#main">
-        Saltar al contenido
+        Skip to content
       </a>
 
-      <aside className="shell__side" aria-label="Navegación principal">
+      <aside className="shell__side" aria-label="Main navigation">
         <div className="brand">
           <Logo size={44} />
           <div>
@@ -46,7 +46,7 @@ export function AppShell() {
             ))}
           </ul>
         </nav>
-        <p className="meta shell__mode">Datos: {api.mode === "mock" ? "demo local (sin backend)" : "API"}</p>
+        <p className="meta shell__mode">Data: {api.mode === "mock" ? "local demo (no backend)" : "API"}</p>
       </aside>
 
       <div className="shell__body">
@@ -56,8 +56,8 @@ export function AppShell() {
             <strong>ARTEMIS HEALTH</strong>
           </div>
           <div className="sim-banner" role="note">
-            <strong>DEMO · DATOS SIMULADOS</strong>
-            <span className="meta">Tripulación ficticia. No usar con datos reales ni para decisiones médicas.</span>
+            <strong>DEMO · SIMULATED DATA</strong>
+            <span className="meta">Fictional crew. Do not use with real data or for medical decisions.</span>
           </div>
           <div className="controls">
             <CrewPicker />
@@ -72,7 +72,7 @@ export function AppShell() {
         </main>
       </div>
 
-      <nav className="bottom-nav" aria-label="Navegación principal (móvil)">
+      <nav className="bottom-nav" aria-label="Main navigation (mobile)">
         {NAV.map(({ to, label, Icon }) => (
           <NavLink key={to} to={to} end={to === "/"} className="bottom-nav__link">
             <Icon size={22} />
