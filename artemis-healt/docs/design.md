@@ -1,4 +1,6 @@
 # Dirección visual
+
+La propuesta detallada de identidad, frames y prompts para Kombai está en [visual/README.md](visual/README.md). Amplía esta dirección con el logo existente y mantiene los requisitos de producto como autoridad.
 Panel de misión oscuro: fondo #08111F, superficie #122033, texto #F4F7FB, secundario #BCCBDD, acento #66D9E8. Tokens en frontend/src/design-system/tokens.css. Tipografía local, cuerpo 16px, metadatos 14px, objetivos táctiles 44px, radios 12px y escala de espaciado 4/8/12/16/24/32px. Comprobar contraste antes de aprobar.
 
 Resumen: selector de perfil y día de misión, etiqueta SIMULADO, cuatro tarjetas, gráfica y explicación. Registrar: campos con etiquetas persistentes, ayuda de escalas 1–7 y 0–100. Historial: tabla accesible equivalente a gráfica. Estados: carga, vacío, imputado excluido, sin historial suficiente, dato antiguo y error de guardado. Ningún color representa estado clínico.

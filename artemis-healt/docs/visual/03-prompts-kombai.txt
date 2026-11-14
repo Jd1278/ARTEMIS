@@ -1,0 +1,70 @@
+ARTEMIS HEALTH · Prompts para Kombai v1
+
+GUÍA DE USO
+Trabajar sobre frontend, sin modificar Python, migraciones ni scripts de datos. Adjuntar el logo original, docs/requirements.md, docs/architecture.md, docs/visual/01-identidad-visual.md, docs/visual/02-frames-modulos.md y frontend/src/design-system/tokens.css. Si Kombai permite crear/adjuntar un Design System, usar estos archivos como base y conservarlo entre iteraciones. No enviar secretos ni cadenas DATABASE_URL.
+
+Ejecutar una etapa por vez. Revisar su resultado antes de pegar la siguiente. El primer objetivo es aprobar lenguaje visual y estructura, no generar toda la aplicación de una vez. Usar fixtures deterministas y explícitos mientras el equipo termina backend. No inventar endpoints ni respuestas como si fueran oficiales. No publicar ni hacer push automáticamente.
+
+PROMPT 01 · DIRECCIÓN VISUAL Y COMPONENTES
+
+Actúa como diseñador de producto y desarrollador frontend de ARTEMIS HEALTH. Lee los documentos adjuntos antes de cambiar archivos. Crea una primera propuesta visual dentro del frontend existente. Mantén React + TypeScript + Vite y la arquitectura en la que FastAPI sirve /api y frontend/dist. No cambies backend, base de datos ni documentos normativos.
+
+Usa como identidad el logo original public/img/logo-sin-fondo.png: cohete, órbita, luna y circuitos. Conserva sus proporciones y colores. Su lienzo tiene margen amplio: comprueba límites visibles y evita que el emblema quede diminuto o recortado. No generes un logo sustituto. Compón ARTEMIS HEALTH como texto junto a la imagen.
+
+Dirección: centro de misión oscuro, preciso y humano. Fondo #08111F; superficie #122033; elevada #1A2D43; texto #F4F7FB; secundario #BCCBDD; cian #66D9E8; azul #79AAFF; marfil #E8DFB7; verde agua #7EDBC3. Bordes decorativos #30465E; bordes de controles #66839F. Texto oscuro #08111F sobre botones cian. El color no representa salud ni gravedad. Arcos orbitales sutiles solo en zonas editoriales, con jerarquía clara y mucho espacio. Evita vidrio excesivo, paneles neon repetidos, 3D, puntuaciones globales y gráficos decorativos.
+
+Usa tokens CSS existentes como fuente; amplíalos si hace falta sin romper aliases. Propuesta tipográfica: Space Grotesk para títulos, Inter para lectura, IBM Plex Mono para metadatos; carga local y licencia incluida si incorporas archivos. Hasta entonces usa fallback de sistema, sin llamadas a Google Fonts. Base 16 px, ayudas 14 px, cifras tabulares y objetivos de 44 px. Respeta prefers-reduced-motion.
+
+Stack: Tailwind CSS, componentes shadcn/ui personalizados, lucide-react. Recharts, React Hook Form, Zod y TanStack Query se incorporarán cuando la pantalla los necesite. Resuelve versiones compatibles mediante el gestor y genera lockfile real. No añadas Next.js, Supabase en navegador, Firebase, segundo backend ni secretos VITE_. No añadas librerías solo para decoración.
+
+Entrega primero shell responsive y galería F08: navegación Resumen, Registrar, Historial y Aprender; logo, selector de perfil ficticio, día de misión y etiquetas DEMO/SIMULADO. Diseña botones, campos, selects, tarjetas, badges de origen/calidad, tabla y diálogo. Muestra estados de carga, vacío, error y NO GUARDADO. Pantallas objetivo 1440x900, 768x1024 y 360x800. Explica archivos creados y decisiones. No implementes todavía todas las pantallas.
+
+PROMPT 02 · PERFILES Y RESUMEN
+
+Continúa con la identidad y componentes aprobados. Implementa F00 y F01 de 02-frames-modulos.md. Usa seis perfiles ficticios CM-01 a CM-06 sin biografías inventadas. Presenta cuatro indicadores: sueño (h), fatiga Samn-Perelli (1–7), estrés percibido (0–100) y pulso de reposo (bpm).
+
+En cada tarjeta: valor, unidad, fecha histórica, día de misión, origen, captura y calidad. Añade cursor temporal de demo y deja claro cuando el último dato es anterior al día seleccionado. Nunca etiquetes los valores históricos como actuales. Diferencia entorno DEMO, datos SIMULADOS y AUTOINFORMES. El origen no depende solo del perfil.
+
+Gráfica Recharts de un indicador a la vez, tiempo real en eje X, unidad en eje Y, null como hueco con connectNulls=false y trazado lineal. No elimines los nulos del array ni los conviertas a cero. Coloca tabla equivalente accesible, tooltip con unidad/origen/fecha y selección por teclado. Usa cifras y fixture comprobables; no random(), no datos sintéticos disimulados como respuesta real. Rótulo global: Vista de diseño · datos de ejemplo.
+
+La comparación muestra mediana previa, diferencia, días usados, periodo y versión. Usa fixture de respuesta de comparación; no implementes reglas nuevas de análisis en el cliente. Debe existir ejemplo de historial insuficiente. No mezcles synthetic con user_report ni contextos/unidades. No muestres salud óptima, riesgo, anomalía, diagnóstico, porcentaje de bienestar ni semáforo.
+
+Separa servicios/interfaces y fixtures de componentes. Endpoints previstos están en architecture.md; documenta preguntas de contrato sin inventar parámetros. No conectes a Supabase directamente. Desktop cuatro tarjetas y gráfico 8/12 con explicación 4/12; tablet dos tarjetas por fila; móvil una columna. Entrega captura o vista de las tres resoluciones y lista de estados pendientes.
+
+PROMPT 03 · REGISTRAR Y ESTADOS DE GUARDADO
+
+Implementa F02 reutilizando componentes aprobados. Formulario con React Hook Form + Zod, etiquetas persistentes, ayudas y errores asociados al campo. Selección de indicador, valor, fecha/hora con zona explícita, unidad y contexto derivados del indicador, perfil y origen AUTOINFORME/captura MANUAL.
+
+Dominios: sueño 0–24; fatiga entero 1–7 (1 Totalmente alerta; 7 Completamente exhausto, incapaz de funcionar eficazmente); estrés 0–100 (Sin estrés percibido / Máximo estrés percibido); pulso positivo en reposo. Rechaza vacío y valores no finitos; no conviertas un campo vacío a cero. La validación del backend sigue siendo autoridad.
+
+Preserva borrador en memoria durante la sesión al navegar o ante error; no prometas recuperación al recargar/cerrar. Evita doble envío. Conserva el mismo UUID al reintentar exactamente el mismo contenido. Diferencia guardando, 200/201 confirmado, 409, 422, fallo de red y NO GUARDADO. No reintentes POST automáticamente ni muestres éxito por un temporizador. Mientras no exista backend conectado, ofrece vista de estados marcada como simulación y no anuncies persistencia.
+
+No escribas datos reales ni implementes autenticación propia. Respeta límites de scope frontend. Entrega formulario desktop/móvil, flujo de teclado, error accesible y contrato pendiente para el equipo backend.
+
+PROMPT 04 · HISTORIAL Y DETALLE
+
+Implementa F03 y F04 de los frames. Filtros de indicador, fechas inclusivas y origen dentro del perfil activo. Gráfica y tabla comparten exactamente los datos filtrados y el orden temporal documentado. No sumes indicadores con unidades diferentes ni mezcles orígenes para comparar.
+
+Tabla con fecha/zona, día de misión, indicador, valor/unidad, contexto, origen, captura y calidad. null se presenta como Sin dato válido. Detalle en panel desktop y diálogo accesible móvil: UUID, valor válido, source_value etiquetado como original excluido cuando proceda, origen, flags, archivo/fila/lote si existen, mediana/diferencia/periodo/versión recibidos del servidor. No inventes hashes ni referencias.
+
+Incluye estados vacío por filtro, error, carga, dato excluido e historial insuficiente. Cierre Escape y restauración de foco. Para móvil conserva acceso a encabezados de tabla y región desplazable identificada sin desbordamiento de página. No añadas exportación, edición ni borrado fuera de P0.
+
+PROMPT 05 · APRENDER Y PROCEDENCIA
+
+Implementa F05 y F06 reutilizando el sistema visual. Biblioteca con cuatro fichas y detalle educativo: significado del indicador, unidad/escala, contexto y límites, lectura descriptiva de evolución y referencia revisada. Usa solo contenidos y referencias suministrados. Si faltan, muestra Contenido pendiente de revisión, sin inventar fuentes ni consejo clínico.
+
+Procedencia: demo ficticia, origen synthetic/user_report, exclusión de imputados y nulos, límites del producto y versiones disponibles. No habilites Investigación P1, rutinas, FAQ, chat médico o expedientes reales. Enlaces a documentación deben existir y ser accesibles. Conserva idioma español y toda la interfaz responsive.
+
+PROMPT 06 · AUDITORÍA ANTES DE INTEGRAR
+
+Audita el frontend contra requirements.md, arquitectura, identidad y frames. Corrige incumplimientos dentro de frontend; reporta bloqueos de backend sin modificarlos. Verifica: cuatro escalas correctas; null sin cero ni interpolación; procedencia por observación; separación de orígenes; cursor histórico; comparación sin puntuación clínica; NO GUARDADO y borrador en sesión; ningún éxito de guardado falso.
+
+Revisa 360x800, 768x1024, 1440x900, zoom 200%, teclado, foco, etiquetas, contraste 4.5:1 en texto normal y 3:1 en controles, movimiento reducido y errores accesibles. Asegura que los textos largos y valores no rompen tarjetas. Ejecuta typecheck y build y reporta resultados reales. No afirmes haber probado API, persistencia ni rendimiento sin ejecutar esas pruebas. Registra dependencias y lockfile. Revisa carga de assets y fuentes locales. No publiques ni hagas push.
+
+PROMPT 07 · INTEGRACIÓN CUANDO BACKEND ESTÉ DISPONIBLE
+
+Antes de integrar, lee el OpenAPI real y las respuestas/error que entregue el equipo. Compara con servicios y tipos frontend, lista discrepancias y adapta el cliente sin cambiar backend. Usa /api del mismo origen en entrega y proxy Vite solo en desarrollo. El navegador no debe contener DATABASE_URL ni clave administrativa.
+
+TanStack Query: claves incluyen perfil, indicador, periodo, origen y cursor según contrato real; no mostrar caché de otro perfil. Tras POST 200/201, invalidar datos afectados. No reintentar POST de manera automática. Autoridad de cálculo en backend; no reconstruir mediana con datos de otra fuente. Si un endpoint no existe muestra estado honesto, sin fallback silencioso a fixtures. Los fixtures quedan aislados en modo de diseño explícito.
+
+Valida carga de perfiles, cambio de cursor, historial/tabla, comparación, registro, reintento idéntico, 409, 422 y desconexión. Reporta evidencias y limitaciones. Coordina fallback SPA y empaquetado frontend/dist con backend; no cambies arquitectura a dos servicios por comodidad. Mantén despliegue privado o demo de lectura hasta que exista autorización de escritura adecuada.

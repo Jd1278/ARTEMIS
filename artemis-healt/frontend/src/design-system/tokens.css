@@ -1,1 +1,46 @@
-:root { --bg: #08111f; --surface: #122033; --text: #f4f7fb; --muted: #bccbdd; --accent: #66d9e8; --radius: 12px; --space: 8px; }
+/* ARTEMIS HEALTH · v1. Semantic roles are operational, never clinical. */
+:root {
+  color-scheme: dark;
+  --bg: #08111f;
+  --surface: #122033;
+  --surface-raised: #1a2d43;
+  --border: #30465e;
+  --border-control: #66839f;
+  --text: #f4f7fb;
+  --muted: #bccbdd;
+  --accent: #66d9e8;
+  --on-accent: #08111f;
+  --accent-blue: #79aaff;
+  --accent-lunar: #e8dfb7;
+  --accent-mint: #7edbc3;
+  --warning: #f3c76a;
+  --error: #ff9aab;
+  --focus: #66d9e8;
+  --chart-sleep: var(--accent-lunar);
+  --chart-fatigue: var(--accent-blue);
+  --chart-stress: var(--accent);
+  --chart-pulse: var(--accent-mint);
+  /* Font files are not bundled yet: these declarations include local fallbacks. */
+  --font-heading: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', Consolas, monospace;
+  --radius: 12px;
+  --radius-card: 16px;
+  --radius-control: 10px;
+  --space: 8px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --target-min: 44px;
+  --duration-fast: 160ms;
+  --duration-normal: 220ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --duration-fast: 0ms; --duration-normal: 0ms; }
+}
