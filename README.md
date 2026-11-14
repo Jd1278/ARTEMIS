@@ -1,13 +1,13 @@
 # ARTEMIS HEALTH
 
-Proyecto de software para monitorizar la salud de astronautas en misiones espaciales, desarrollado para NASA Space Apps Challenge 2026.
+Plataforma web de seguimiento y visualización de indicadores de bienestar para un perfil ficticio de astronauta (`DEMO / SIMULADO`), desarrollada para NASA Space Apps Challenge 2026.
 
-El proyecto activo está en [artemis-healt](artemis-healt/README.md).
+El proyecto completo (backend FastAPI, migraciones SQL para Supabase, datos semilla verificados, suite de pruebas `pytest` y estructura de frontend) se encuentra en [artemis-healt/README.md](artemis-healt/README.md).
 
-- Requisitos finales: [requirements.md](artemis-healt/docs/requirements.md).
-- Arquitectura: [architecture.md](artemis-healt/docs/architecture.md).
-- Revisión de datos: [review.md](artemis-healt/docs/review.md).
-- Documento fuente conservado: ARTEMIS_HEALTH_Requisitos_y_revision_datasets.docx.
-- Paquete fuente conservado: artemis-sleep-dataset/.
-
-Los documentos ASTROGUARD anteriores y sus temporales se retiraron por haber sido sustituidos. El registro de rutas y hashes está en artemis-healt/docs/cleanup-manifest.json. La aplicación funcional está pendiente; se dispone de requisitos, estructura modular, preparación del contrato P0 y pruebas de datos.
+## Enlaces principales
+- **Guía de instalación, ejecución y despliegue:** [artemis-healt/README.md](artemis-healt/README.md)
+- **Documentación de Endpoints y ejemplos JSON:** [artemis-healt/docs/api_endpoints.md](artemis-healt/docs/api_endpoints.md)
+- **Requisitos funcionales y no funcionales:** [artemis-healt/docs/requirements.md](artemis-healt/docs/requirements.md)
+- **Arquitectura modular:** [artemis-healt/docs/architecture.md](artemis-healt/docs/architecture.md)
+- **Configuración y seguridad en Supabase:** [artemis-healt/docs/supabase.md](artemis-healt/docs/supabase.md)
+- **Auditoría y revisión de datasets:** [artemis-healt/docs/review.md](artemis-healt/docs/review.md)
