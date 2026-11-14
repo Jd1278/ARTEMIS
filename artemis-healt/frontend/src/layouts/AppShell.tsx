@@ -31,6 +31,9 @@ export function AppShell() {
             <p className="meta">{MISSION.name}</p>
           </div>
         </div>
+        <p className="demo-tag" title="Demo with simulated data and a fictional crew. Not for real data or medical decisions.">
+          Demo · simulated data · fictional crew
+        </p>
         <nav>
           <ul className="nav">
             {NAV.map(({ to, label, Icon }) => (
@@ -52,6 +55,7 @@ export function AppShell() {
           <div className="topbar__brand">
             <Logo size={32} />
             <strong>ARTEMIS HEALTH</strong>
+            <span className="demo-tag demo-tag--inline">Demo · simulated data</span>
           </div>
           <div className="controls">
             <CrewPicker />
