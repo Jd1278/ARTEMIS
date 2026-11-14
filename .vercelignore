@@ -1,0 +1,16 @@
+.local-backups/
+.kombai/
+artemis-sleep-dataset/
+Investigation/
+*.docx
+**/.venv/
+**/.vercel/
+**/node_modules/
+**/dist/
+**/__pycache__/
+**/.pytest_cache/
+**/*.egg-info/
+**/var/
+**/.env
+**/.env.*
+!artemis-healt/frontend/.env.production

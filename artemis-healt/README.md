@@ -1,156 +1,144 @@
-# ARTEMIS HEALTH — Backend REST (FastAPI + PostgreSQL/Supabase)
+# ARTEMIS HEALTH — Application guide
 
-Plataforma web informativa y educativa de seguimiento y visualización de indicadores de bienestar para un perfil ficticio de astronauta (`DEMO / SIMULADO`).
+React/TypeScript frontend and FastAPI backend for a fictional astronaut wellbeing demo. See the [project overview](../README.md) for functionality, data generation, cited sources and AI disclosure.
 
-> **Alcance No Clínico:** ARTEMIS HEALTH no es un dispositivo médico. No diagnostica, no predice enfermedades, no prescribe tratamientos, no calcula puntuaciones globales de salud ni genera recomendaciones clínicas.
+**[Public demo](https://artemis-health-five.vercel.app/)** — synthetic, read-only and non-clinical. Screens: Overview, Log, History, Learn and `/components`. A visible form does not authorize public writes.
 
----
+## Requirements
 
-## 1. Arquitectura y Organización del Proyecto
+- Python 3.11 or later.
+- Node.js 24 for consistency with deployment; use the committed frontend lockfile.
+- Supabase PostgreSQL for production; SQLite is available for local development.
 
-El backend sigue una arquitectura modular por capas dentro de `src/artemis_health/`:
+## Backend setup
 
-```text
-artemis-healt/
-├── data/demo/                 # Contrato de datos semilla (observations.json y manifest.json)
-├── docs/                      # Requisitos, arquitectura, auditoría de datasets y documentación API
-│   └── api_endpoints.md       # Documentación completa de endpoints y ejemplos JSON
-├── migrations/                # Esquema PostgreSQL y políticas RLS para Supabase
-│   ├── 001_initial.sql        # Esquema privado artemis, dominios, triggers y RLS base
-│   └── 002_complete_schema.sql# Tablas checkins, educational_content, research_datasets y perfiles
-├── scripts/                   # Utilidades de preparación, migración y exportación SQL
-│   ├── prepare_demo.py        # Genera data/demo/observations.json desde crew_daily_log_clean.csv
-│   ├── database.py            # Comandos migrate, seed y verify contra Supabase PostgreSQL
-│   └── export_seed_sql.py     # Genera scripts/sql/load_demo.sql para Supabase SQL Editor
-├── src/artemis_health/
-│   ├── main.py                # Punto de entrada FastAPI, CORS, OpenAPI y montaje de rutas
-│   ├── core/                  # Configuración (.env), constantes de dominio, excepciones y logs seguros
-│   ├── database/              # Conexiones TLS PostgreSQL/Supabase, SQLite local y datos semilla
-│   ├── models/                # Entidades de dominio tipadas
-│   ├── schemas/               # Esquemas y validadores estrictos Pydantic v2
-│   ├── repositories/          # Repositorios parametrizados (SupabasePostgresRepository y SQLiteWellnessRepository)
-│   ├── services/              # Lógica de negocio y algoritmo causal de mediana (baseline_v1)
-│   ├── routers/               # Endpoints REST desacoplados de la lógica de negocio
-│   └── modules/               # Re-exportación modular compatible (profiles, observations, analysis, education, research)
-├── tests/                     # Suite de pruebas automatizadas (pytest y unittest)
-├── .env.example               # Plantilla de variables de entorno sin secretos
-├── pyproject.toml             # Metadatos del paquete y configuración de pytest
-└── requirements.txt           # Dependencias de producción y pruebas
-```
+From the repository root:
 
----
-
-## 2. Instalación y Configuración
-
-### Requisitos previos
-- Python 3.11+
-- Proyecto en Supabase PostgreSQL (para producción/despliegue remoto) o modo persistente local automático (`var/artemis_health.db`) para desarrollo y pruebas sin conexión.
-
-### Instalación
-```bash
+```powershell
 cd artemis-healt
 python -m venv .venv
-# En Windows PowerShell:
 .\.venv\Scripts\Activate.ps1
-# En Linux/macOS:
-# source .venv/bin/activate
-
 pip install -r requirements.txt
 pip install -e .
+Copy-Item .env.example .env
 ```
 
-### Variables de Entorno (`.env`)
-Copia `.env.example` a `.env` y completa las variables según el entorno:
-```bash
-cp .env.example .env
+On Linux/macOS, activate with `source .venv/bin/activate` and copy with `cp .env.example .env`.
+
+For local development without PostgreSQL, use `ARTEMIS_STORAGE=sqlite` and leave `DATABASE_URL` empty. The default local database is `var/artemis_health.db`, seeded from the committed fixture. Local development permits writes; do not enter real personal data.
+
+For PostgreSQL, set `ARTEMIS_STORAGE=postgres`, `ARTEMIS_MODE=demo` and backend-only `DATABASE_URL` using the Supabase pooler with TLS. Keep secrets out of Git, logs and browser variables. `DATABASE_ADMIN_URL` is reserved for an authorized migration operator and must not be deployed.
+
+```powershell
+uvicorn artemis_health.main:app --app-dir src --host 127.0.0.1 --port 8000 --reload
 ```
-- `ARTEMIS_MODE=demo`
-- `ARTEMIS_STORAGE=auto` (`auto` selecciona PostgreSQL/Supabase si `DATABASE_URL` está definida; de lo contrario utiliza SQLite persistente local en `var/artemis_health.db` auto-sembrado con las 4.320 observaciones simuladas).
-- `DATABASE_URL`: Cadena de conexión PostgreSQL de Supabase (Supavisor en modo transacción con TLS).
-- `DATABASE_ADMIN_URL`: Cadena exclusiva para ejecutar migraciones desde el entorno local (no desplegar en producción).
-- `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`: Credenciales opcionales de Supabase (**jamás exponer `SUPABASE_SERVICE_ROLE_KEY` al frontend**).
-- `CORS_ORIGINS`: Lista separada por comas de dominios permitidos (ej. `http://localhost:5173,https://tu-frontend.vercel.app`).
 
----
+Swagger: `http://127.0.0.1:8000/docs`; OpenAPI: `http://127.0.0.1:8000/openapi.json`. This development entrypoint does not apply the public deployment's read-only middleware.
 
-## 3. Base de Datos en Supabase y Semilla de Datos
+## Frontend setup
 
-1. Aplicar las migraciones SQL (`migrations/001_initial.sql` y `migrations/002_complete_schema.sql`) y cargar la semilla verificada:
-   ```bash
-   python scripts/database.py migrate
-   python scripts/database.py seed
-   python scripts/database.py verify
-   ```
-   *(Alternativamente, en el SQL Editor de Supabase puedes ejecutar `migrations/001_initial.sql`, `migrations/002_complete_schema.sql` y `scripts/sql/load_demo.sql`).*
+In another terminal, from `artemis-healt/frontend`:
 
-2. Regenerar el contrato local desde el dataset fuente (opcional, determinista):
-   ```bash
-   python scripts/prepare_demo.py
-   ```
-
----
-
-## 4. Ejecución del Servidor API
-
-```bash
-uvicorn artemis_health.main:app --app-dir src --host 0.0.0.0 --port 8000 --reload
+```powershell
+npm ci
+npm run dev
 ```
-- Documentación interactiva Swagger UI: `http://localhost:8000/docs`
-- Especificación OpenAPI JSON: `http://localhost:8000/openapi.json`
 
----
+Open `http://localhost:5173`. Development HTTP mode proxies `/api` to the local backend. Production uses same-origin `/api`.
 
-## 5. Endpoints Disponibles
+For the isolated browser demonstration without a backend:
 
-Todas las rutas responden tanto en la raíz como bajo el prefijo `/api`:
+```powershell
+npm run dev:mock
+```
 
-| Método | Ruta | Descripción |
-| :--- | :--- | :--- |
-| `GET` | `/health` (`/api/health`) | Estado de la API y conexión a Supabase / base de datos. |
-| `GET` | `/indicators` (`/api/indicators`) | Catálogo de los indicadores, unidades permitidas y dominios técnicos. |
-| `GET` | `/profiles` (`/api/profiles`) | Lista de perfiles ficticios de demostración (`demo`, `CM-01`..`CM-06`). |
-| `GET` | `/profiles/demo/dashboard` (`/profiles/{id}/dashboard`) | Resumen de los 4 indicadores, último valor y comparación con mediana personal. |
-| `POST` | `/observations` (`/api/observations`) | Registrar observación validada con idempotencia por UUID (`201`, `200`, `409`). |
-| `GET` | `/profiles/demo/observations` (`/profiles/{id}/observations`) | Historial filtrable por `indicator`, `from` y `to` en orden cronológico. |
-| `GET` | `/profiles/demo/trends` (`/profiles/{id}/trends`) | Series cronológicas para Recharts sin interpolar huecos (`value: null`). |
-| `GET` | `/profiles/demo/comparison` (`/profiles/{id}/comparison`) | Detalle de la línea base personal (`baseline_v1`) para un indicador y fecha. |
-| `POST` | `/checkins` (`/api/checkins`) | Registrar seguimiento diario de bienestar (fatiga 1–5, estrés 1–5 y notas). |
-| `GET` | `/educational-content` (`/api/education`) | Fichas educativas con unidad, limitaciones y referencia bibliográfica. |
-| `GET` | `/research/datasets` (`/api/research/datasets`) | Metadatos de datasets públicos/análogos aislados del espacio `demo`. |
+Mock mode is explicit; its writes do not demonstrate database persistence and must not disguise production API failures.
 
-Consulta ejemplos detallados de solicitudes y respuestas en [docs/api_endpoints.md](docs/api_endpoints.md).
+## API capabilities
 
----
+Routes are available under `/api`. Consult the [endpoint guide](docs/api_endpoints.md) and running OpenAPI for exact parameters and response schemas.
 
-## 6. Ejecución de Pruebas Automatizadas
+| Method | Path under `/api` | Purpose |
+| --- | --- | --- |
+| GET | `/health` | API/database health. |
+| GET | `/indicators` | Indicator domains, units and contexts. |
+| GET | `/profiles` | Fictional demo profiles. |
+| GET | `/profiles/{id}/dashboard` | Historical overview and comparisons. |
+| GET | `/profiles/{id}/observations` | Filtered observation history. |
+| GET | `/profiles/{id}/trends` | Historical series preserving nulls. |
+| GET | `/profiles/{id}/comparison` | Backend `baseline_v1` response. |
+| POST | `/observations` | Development contract with UUID idempotency: 201/200, conflict 409, validation 422. Blocked publicly. |
+| POST | `/checkins` | Separate legacy check-in contract using 1–5 scales. Blocked publicly. |
+| GET | `/education` | Educational content; consult OpenAPI for aliases. |
+| GET | `/research/datasets` | Research metadata, separate from the demo. Does not imply a released research screen. |
 
-```bash
+The frontend requests history with `strict_indicator=true` to separate legacy scales from fatigue 1–7 and stress 0–100. Connected comparisons are supplied by the backend.
+
+## Demo data and database operations
+
+`data/demo/observations.json` contains 4,320 slots across six profiles, 180 days and four indicators, including 92 null values in the committed manifest. `scripts/prepare_demo.py` adapts the synthetic daily log, excludes flagged imputation/out-of-range values, retains provenance and generates deterministic UUIDs and hashes.
+
+```powershell
+python scripts/prepare_demo.py
+```
+
+This overwrites the local fixture and manifest; inspect the diff. It does not update production.
+
+For an explicitly selected, authorized database only:
+
+```powershell
+python scripts/database.py migrate
+python scripts/database.py seed
+python scripts/database.py verify
+```
+
+Migration and seed commands modify their target. They are not required to inspect an already provisioned production deployment. Review the [Supabase guide](docs/supabase.md) and migrations first. The application uses the private `artemis` schema.
+
+## Verification
+
+Backend, from `artemis-healt` with the virtual environment active:
+
+```powershell
 pytest -v
-python -m unittest discover -s tests -v
 ```
 
----
+Frontend, from `artemis-healt/frontend`:
 
-## 7. Despliegue Independiente e Integración con Frontend en Vercel
+```powershell
+npm run typecheck
+npm test
+npm run build
+npm run test:e2e
+```
 
-- **Backend (Render, Railway, Fly.io, Cloud Run o VPS con contenedor/Uvicorn):**
-  - Comando de inicio: `uvicorn artemis_health.main:app --app-dir src --host 0.0.0.0 --port $PORT`
-  - Variables de entorno requeridas en el servicio backend: `DATABASE_URL`, `ARTEMIS_MODE=demo`, `CORS_ORIGINS=https://<tu-dominio-en-vercel>.vercel.app`.
-- **Frontend (Vercel — React + Vite + TypeScript + Recharts):**
-  - Configurar en Vercel únicamente la URL pública del backend: `VITE_API_BASE_URL=https://<tu-backend-url>`.
-  - Nunca configurar `DATABASE_URL`, `DATABASE_ADMIN_URL` ni `SUPABASE_SERVICE_ROLE_KEY` en las variables del frontend.
+The browser regression uses mock mode and tests playback/navigation after a simulated translation mutation. On Windows, Playwright expects Chrome at `C:/Program Files/Google/Chrome/Application/chrome.exe`. Other systems use Playwright Chromium, which may require `npx playwright install chromium`. This test does not verify PostgreSQL persistence or production writes. These commands are instructions, not a claim that every suite ran for each documentation update.
 
----
+## Current Vercel deployment
 
-## Frontend
-React + TypeScript + Vite. Especificación y prompt de generación: [docs/frontend-prompt.md](docs/frontend-prompt.md).
+Frontend and backend are packaged in one project:
 
-Desde `frontend/` (requiere Node 20+; el lockfile fija versiones):
-1. `npm install`
-2. Con el backend corriendo en `http://localhost:8000` (ver arriba), `npm run dev` y abrir http://localhost:5173. En desarrollo usa `VITE_API_MODE=http` (archivo `.env.development`): Vite redirige `/api` al backend.
-3. Sin backend: `npm run dev:mock` usa el modo `mock`, que implementa el contrato en el navegador sobre `data/demo/observations.json` (las capturas se pierden al recargar).
+- Root Directory: `artemis-healt`.
+- Framework: FastAPI; entrypoint: `app.py`.
+- Build: `npm --prefix frontend ci && npm --prefix frontend run build`.
+- Frontend output: `frontend/dist`, served by FastAPI with SPA route support.
+- Node.js 24 for the frontend build; Python for FastAPI.
+- Backend environment: `ARTEMIS_MODE=demo`, `ARTEMIS_STORAGE=postgres`, secret `DATABASE_URL`.
+- Browser API base: `/api`. Database credentials must never use a `VITE_` prefix.
 
-- `npm test`: pruebas de la regla `baseline_v1` y del adaptador HTTP.
-- `npm run build`: genera `frontend/dist`, que FastAPI sirve en `/` en la entrega.
+`app.py` rejects methods other than GET, HEAD and OPTIONS with `403 READ_ONLY_DEMO`. The public Log form cannot persist submissions. Keep this boundary until an appropriate authenticated write flow is authorized and implemented. The GitHub-connected project deploys updates to `main` automatically.
 
-Pantallas: Resumen, Registrar, Historial, Aprender y `/componentes` (galería interna). El adaptador `src/services/httpApi.ts` traduce las respuestas del backend al contrato que usan las pantallas y consulta el historial con `strict_indicator=true` para no mezclar las escalas 1–7/0–100 con las de check-in 1–5. Las referencias de las fichas educativas locales siguen pendientes de revisión.
+## Code map
+
+| Directory | Responsibility |
+| --- | --- |
+| `frontend/src/features/` | Overview, recording, history, comparisons and education. |
+| `frontend/src/services/` | Domain types, HTTP adapter and isolated mock implementation. |
+| `frontend/src/design-system/` | Tokens, styles, components and illustrations. |
+| `src/artemis_health/routers/` | REST endpoints. |
+| `src/artemis_health/schemas/` | Pydantic validation. |
+| `src/artemis_health/services/` | Domain behavior and `baseline_v1`. |
+| `src/artemis_health/repositories/` | PostgreSQL/SQLite adapters. |
+| `migrations/` | PostgreSQL schema and policies. |
+| `tests/`, `frontend/e2e/` | Backend and browser checks. |
+
+References: [architecture](docs/architecture.md), [requirements](docs/requirements.md), [dataset review](docs/review.md), [audit artifact](docs/dataset-audit.json), [visual system](docs/visual/README.md), [English source audit](../Investigation/Inglés/reports/008_source_and_transformation_audit.md). Some supporting documents describe earlier plans; current code and deployment configuration establish implemented behavior.

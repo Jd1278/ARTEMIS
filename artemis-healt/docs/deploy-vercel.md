@@ -4,7 +4,7 @@ Base local actualizada mediante fast-forward a `origin/main`, commit `ba70824` (
 
 ## Proyecto existente
 
-Dominio indicado: https://artemis-two-pi.vercel.app. En el proyecto propietario de ese dominio, revisar Settings → Build and Deployment:
+El proyecto anterior fue eliminado por el usuario. Se creó `artemis-health` en `jd1279w-1611s-projects`. Dominio nuevo: https://artemis-health-five.vercel.app. Settings → Build and Deployment:
 
 | Ajuste | Valor |
 | --- | --- |
@@ -43,8 +43,22 @@ Resultado local de esta preparación: typecheck correcto, 15 tests de frontend a
 
 Antes de producción, hacer un preview autenticado en el proyecto correcto y comprobar `/`, `/history`, `/api/health`, `/api/profiles`, assets, solicitudes reales del frontend y rechazo de POST. Confirmar la conexión de Supabase desde el servidor. Una compilación local correcta no demuestra que las variables o la base estén configuradas en Vercel.
 
-## Estado del acceso
+## Estado del despliegue
 
-La CLI local de Vercel devolvió Logged out. No se modificaron ajustes remotos, secretos ni despliegues. No se hizo push ni se lanzó un deployment temporal. Para aplicar: iniciar sesión en la cuenta propietaria, revisar los ajustes anteriores, publicar los cambios preparados mediante el flujo Git del equipo y comprobar un preview antes de promover producción.
+El usuario autorizó la cuenta y la creación del proyecto nuevo. Vercel asignó automáticamente el primer despliegue a producción. Estado Ready, deployment `dpl_By2ncQZJgHfdMYJTn9UVGoKxBGoW`. El usuario autorizó explícitamente conectar GitHub y habilitar los despliegues automáticos. Raíz artemis-healt, FastAPI, Node 24 y salida automática aplicados. No se desactivó la protección de despliegues.
+
+Verificación HTTP real del dominio nuevo: `/`, `/history`, `/log` y `/learn` responden 200, así como el JS y CSS del build. POST `/api/observations` responde 403 READ_ONLY_DEMO. `/api/health` responde 503 SUPABASE_UNAVAILABLE porque falta configurar DATABASE_URL; no se afirma que el flujo de datos esté operativo.
+
+El conector Supabase confirmado apunta a `qupghjvxflmkzasaubwb`. La revisión completa encontró los datos en el esquema privado `artemis`: 6 perfiles, 4 indicadores y 4320 observaciones. El esquema public está vacío; no confundirlo con una base sin datos. No se ejecutaron migraciones ni se cambió el esquema expuesto.
+
+Pendiente: el usuario añadirá DATABASE_URL como variable sensible de servidor en Production y Preview. Después se requiere un redeploy y verificar salud, perfiles, dashboard e historial contra Supabase. No pegar credenciales en Git o en chats. El sitio está desplegado, pero su API de datos no está operativa hasta completar ese paso.
+
+### Verificación final · 14 de noviembre de 2026
+
+El usuario corrigió la conexión para usar el pooler compartido y realizó un nuevo redeploy. Producción activa: `dpl_r6RDhjjnxtHhbpjbN8yM5nBfzkfD`, estado Ready, dominio https://artemis-health-five.vercel.app.
+
+La comprobación real desde producción confirmó HTTP 200 en `/api/health` con `database_connected: true`, `/api/profiles` con 6 perfiles, dashboard CM-01 con 4 indicadores, historial de sueño entre 1 y 29 de abril de 2026 con 29 observaciones, y comparación de sueño para el 29 de abril. Esto sustituye el estado de API pendiente registrado arriba. No se leyó ni se imprimió el secreto de conexión, ni se modificaron los datos de Supabase.
+
+La configuración de Preview debe revisarse por separado: la primera variable inspeccionada estaba asignada solo a Production. No se afirma haber probado Preview con base de datos. Tampoco se afirma persistencia de nuevas escrituras: la demo pública mantiene la barrera de solo lectura.
 
 Referencias oficiales: [FastAPI en Vercel](https://vercel.com/docs/frameworks/backend/fastapi), [configuración de proyecto](https://vercel.com/docs/project-configuration). La guía de FastAPI documenta app.py como entrada admitida, el Build Command y el uso de StaticFiles para servir el frontend.
