@@ -1,5 +1,4 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { api } from "../services";
 import { MISSION } from "../services/domain";
 import { IconAdd, IconHistory, IconHome, IconLearn, Logo } from "../design-system/icons";
 import { SpaceBackground } from "../design-system/illustrations";
@@ -46,7 +45,6 @@ export function AppShell() {
             ))}
           </ul>
         </nav>
-        <p className="meta shell__mode">Data: {api.mode === "mock" ? "local demo (no backend)" : "API"}</p>
       </aside>
 
       <div className="shell__body">
@@ -54,10 +52,6 @@ export function AppShell() {
           <div className="topbar__brand">
             <Logo size={32} />
             <strong>ARTEMIS HEALTH</strong>
-          </div>
-          <div className="sim-banner" role="note">
-            <strong>DEMO · SIMULATED DATA</strong>
-            <span className="meta">Fictional crew. Do not use with real data or for medical decisions.</span>
           </div>
           <div className="controls">
             <CrewPicker />

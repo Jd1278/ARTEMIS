@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useMission } from "../../app/state";
 import { useAsync } from "../../app/useAsync";
@@ -18,10 +18,16 @@ export function HistoryPage() {
   const [origin, setOrigin] = useState<OriginType>("synthetic");
   const [fromDay, setFromDay] = useState(Math.max(1, missionDay - 29));
   const [toDay, setToDay] = useState(missionDay);
+  // Follow the mission cursor: the window resets to the 30 days up to the selected day.
+  useEffect(() => {
+    setFromDay(Math.max(1, missionDay - 29));
+    setToDay(missionDay);
+  }, [missionDay]);
   const [view, setView] = useState<"chart" | "table">("chart");
 
-  const lo = Math.max(1, Math.min(fromDay, toDay));
-  const hi = Math.min(MISSION.days, Math.max(fromDay, toDay));
+  const lo = Math.max(1, Math.min(fromDay, toDay, missionDay));
+  // Never show data after the mission cursor (requirements: calculations respect the cursor).
+  const hi = Math.min(missionDay, MISSION.days, Math.max(fromDay, toDay));
   const ind = INDICATOR_BY_KEY[indicator];
 
   const state = useAsync(
@@ -78,10 +84,10 @@ export function HistoryPage() {
             )}
           </Field>
           <Field label="From day">
-            {(a) => <input {...a} className="input" type="number" min={1} max={MISSION.days} value={fromDay} onChange={(e) => setFromDay(Number(e.target.value) || 1)} />}
+            {(a) => <input {...a} className="input" type="number" min={1} max={missionDay} value={fromDay} onChange={(e) => setFromDay(Number(e.target.value) || 1)} />}
           </Field>
           <Field label="To day">
-            {(a) => <input {...a} className="input" type="number" min={1} max={MISSION.days} value={toDay} onChange={(e) => setToDay(Number(e.target.value) || 1)} />}
+            {(a) => <input {...a} className="input" type="number" min={1} max={missionDay} value={toDay} onChange={(e) => setToDay(Number(e.target.value) || 1)} />}
           </Field>
         </div>
         <div className="row" style={{ justifyContent: "space-between" }}>

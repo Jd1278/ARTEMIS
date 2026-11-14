@@ -23,7 +23,17 @@ const router = createBrowserRouter([
       { path: "/history", element: <HistoryPage /> },
       { path: "/learn", element: <EducationPage /> },
       { path: "/components", element: <GalleryPage /> },
-      { path: "*", element: <EmptyState title="Page not found">Use the navigation to go back.</EmptyState> },
+      {
+        path: "*",
+        element: (
+          <>
+            <div className="page-head">
+              <h1>Page not found</h1>
+            </div>
+            <EmptyState title="This page does not exist">Use the navigation to go back.</EmptyState>
+          </>
+        ),
+      },
     ],
   },
 ]);

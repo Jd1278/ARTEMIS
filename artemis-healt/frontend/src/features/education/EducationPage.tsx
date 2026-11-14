@@ -57,6 +57,25 @@ export function EducationPage() {
             ))
           : INDICATORS.map((i) => <Skeleton key={i.key} height={280} />)}
       </div>
+
+      <Card as="section" className="stack ai-note" aria-labelledby="ai-use-title" style={{ marginTop: "var(--space-4)" }}>
+        <h2 id="ai-use-title">How AI was used in this project</h2>
+        <p>
+          We used Claude (Anthropic) as a support tool. Every AI-assisted part was reviewed, run and tested by the team.
+        </p>
+        <ul style={{ margin: 0, paddingLeft: "1.2em" }}>
+          <li>
+            <strong>Data:</strong> helped research published sources and write the scripts that simulate, clean and validate the fictional crew dataset.
+          </li>
+          <li>
+            <strong>Web interface:</strong> helped write the frontend code, the illustrations and the English text of this page.
+          </li>
+        </ul>
+        <p className="meta">
+          No AI model runs inside the app: comparisons use a fixed, transparent rule (median of your own previous days, rule baseline_v1), and the app does not
+          diagnose or give medical advice.
+        </p>
+      </Card>
     </>
   );
 }
