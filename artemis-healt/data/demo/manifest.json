@@ -1,0 +1,9 @@
+{
+  "source": "artemis-sleep-dataset\\data\\processed\\crew_daily_log_clean.csv",
+  "sha256": "1748a068c0af4c811b791bdf452b406b05a96da09dd3db2ac02dc11d6fb5d00d",
+  "transform": "prepare_demo_v1",
+  "rows": 4320,
+  "null_values": 92,
+  "output_sha256": "c8c80d090337c7bbca882eaa2b6fd8ffcdd3dd04a580c98b834f553a35d0a2c1",
+  "notice": "SIMULADO; imputados excluidos; original conservado"
+}

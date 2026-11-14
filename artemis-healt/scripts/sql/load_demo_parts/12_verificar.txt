@@ -1,0 +1,13 @@
+DO $verify$
+BEGIN
+ IF (SELECT count(*) FROM artemis.observations WHERE import_batch_id='c8c80d090337c7bbca882eaa2b6fd8ffcdd3dd04a580c98b834f553a35d0a2c1') <> 4320
+ OR (SELECT count(*) FROM artemis.observations WHERE import_batch_id='c8c80d090337c7bbca882eaa2b6fd8ffcdd3dd04a580c98b834f553a35d0a2c1' AND value IS NULL) <> 92
+ OR (SELECT count(DISTINCT profile_id) FROM artemis.observations WHERE import_batch_id='c8c80d090337c7bbca882eaa2b6fd8ffcdd3dd04a580c98b834f553a35d0a2c1') <> 6
+ OR (SELECT count(DISTINCT indicator) FROM artemis.observations WHERE import_batch_id='c8c80d090337c7bbca882eaa2b6fd8ffcdd3dd04a580c98b834f553a35d0a2c1') <> 4
+ THEN RAISE EXCEPTION 'Incomplete demo: execute all 11 parts before continuing'; END IF;
+END $verify$;
+SELECT count(*) AS observations,
+ count(DISTINCT profile_id) AS profiles,
+ count(DISTINCT indicator) AS indicators,
+ count(*) FILTER (WHERE value IS NULL) AS null_values
+FROM artemis.observations WHERE import_batch_id='c8c80d090337c7bbca882eaa2b6fd8ffcdd3dd04a580c98b834f553a35d0a2c1';

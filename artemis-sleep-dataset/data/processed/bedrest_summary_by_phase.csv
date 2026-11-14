@@ -1,0 +1,9 @@
+source,phase,n,sleep_duration_h,sleep_latency_h,sleep_efficiency_pct,nights_lt_7h_pct,sleep_aid_nights_pct,memory_rt_ms,memory_accuracy_pct,memory_lapses_gt700ms,tilt_tolerance_min
+actigraphy,pre_bedrest,2,7.78,0.16,93.9,0.0,0.0,,,,
+actigraphy,bedrest,167,7.2,0.71,81.7,22.2,12.8,,,,
+actigraphy,post_bedrest,21,7.4,0.54,83.3,9.5,0.0,,,,
+winscat (non-practice runs),pre_bedrest,3,,,,,,550.0,93.7,4.0,
+winscat (non-practice runs),bedrest,12,,,,,,530.9,90.7,5.7,
+winscat (non-practice runs),post_bedrest,6,,,,,,490.0,94.7,0.5,
+tilt,pre_bedrest,3,,,,,,,,,25.0
+tilt,post_bedrest_R+0,3,,,,,,,,,15.7

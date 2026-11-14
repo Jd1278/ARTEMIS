@@ -1,0 +1,337 @@
+[
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\ASTROGUARD_Especificacion_desarrollo.md",
+    "sha256": "94EC8D6274EA428AC29B2EA63F59A53C814A740082C76EE1CB57856BA3F284F7",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\ASTROGUARD_Plan_MVP_48_horas.docx",
+    "sha256": "E5F415E12132D34AF64D22A45A8D9BE4077905E7FBB85D5D6C933D0BE85A5C98",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\ASTROGUARD_Propuesta_tecnica_revisada.md",
+    "sha256": "EA12E0E846151E84F34D4C507A92364112425675C56395E17436E6ABA136F763",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\output\\pdf\\ASTROGUARD_Especificacion_desarrollo.pdf",
+    "sha256": "B29518BB281359C7C96C8C543412282E97BB382DB2F515867B123F4AFAB74779",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\output\\pdf\\ASTROGUARD_Propuesta_tecnica_revisada.pdf",
+    "sha256": "A74C588C98B95A1ED1FBCFD8CF24B4D3ADFB3D13C8C8AE0D4DEB7FAC8F99CE3B",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-01.png",
+    "sha256": "E28C08368AFAA94A45317F014E33A08353D535932ED530CAD8D50F46B010E8CC",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-02.png",
+    "sha256": "B9C51428C951A3AE8CFCF98FB7D8BE1FDB141AACD8821696861C080D31911242",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-03.png",
+    "sha256": "130EC7DEABB6B8AAE47942CA72A5FEEFFD232A7E9F60E6D69695EAF041EDF3F0",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-04.png",
+    "sha256": "38B00814228D7AAD6C16B75F311B9342AF9D4984F428ECE8209A2B10D9D1F68D",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-05.png",
+    "sha256": "6D8FF24675457F139C7093D8E15372C17D1301824EF86A200F0586A24493924A",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-06.png",
+    "sha256": "DE0DD3248BFCF7F3B31AF0F9E86FB1AB6966C6C4922B2C6EBB74D4909153AEBE",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-07.png",
+    "sha256": "E060D4F7674C8D3B815E4538FA5A7DC39CC6681027AF9A5DB32237392280F836",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-08.png",
+    "sha256": "5C7236575D68318AA9F7403DBD74F7A3FEEAD5B4F7199C241A50B921B7468480",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-09.png",
+    "sha256": "E8576EEEB2A37591A8FC0057A451DF3F37F9F6B73D0C66949F305CDE56E3DE49",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-10.png",
+    "sha256": "5889DEB1B63C870256B34CE06223A3E08F4EC959452A33A88AF44F683CD4E6B8",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-11.png",
+    "sha256": "AA7327F97068F512BC555E879D62ECBB68708AD2BA226E1B3493834F16B6DC6E",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\approved-12.png",
+    "sha256": "D7E2EB9E8B57A10FA4AC235552861D09906F0C1FB7DBE4FE215D18F6F20259E6",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\build_proposal.py",
+    "sha256": "389CEDAE48A66031AA618804C0CFC03AB3D0A15304FDBA86813952C348BF00D6",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\build_spec.py",
+    "sha256": "F948BD96F492B992DA0E59DB601D40BF730834114EA34425205EC92CDAAC2D76",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-01.png",
+    "sha256": "91E3F9A5B2E26D4176802FD05D51E689D8FD2253BD15C957B7515146B021C603",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-02.png",
+    "sha256": "7B7592E4666072A8413E57EBBFA76A2C583A92E69142C4905216069AE26F842F",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-03.png",
+    "sha256": "9399177C38D77ACCD7E9F0BAD635CCED35C75F9DF51E5AF87AE1F37FD74EE698",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-04.png",
+    "sha256": "C93D45FB1109FE03D8F5BDC58DD9FB92EC26F1E295D1B14D69F08D0410099410",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-05.png",
+    "sha256": "9FB64872E1780B007CBC22CE7210F9E14FE3202AD6CA536060F2685444F4EE63",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-06.png",
+    "sha256": "B52B008EC91BD820AC2BD132C1218328FD854E4A9C52B7B7026E4504A3645969",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-07.png",
+    "sha256": "BC5C563FF9F189124E65B3AC8B23A32878F318C8738E2A5BCF6691AE6E782BFD",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-08.png",
+    "sha256": "4585709AED4C99BB07E8AD976C04DC9C8765F62021D5DD17B8240845C37C965A",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-09.png",
+    "sha256": "2FA1ABA09E8F4459CC573806CF0F3E62892DFE64B6458B9CE1CF32FCB743A79C",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-10.png",
+    "sha256": "8919B37A9FEE74D0A97A056F7F5755E97A37B8CDFCFE728C5DF0200F9B3C7626",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-11.png",
+    "sha256": "7A29B0522BCD13906A61DBD822B96B47F4C180B79790B18DB8D1C05E891BD0CC",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\final-12.png",
+    "sha256": "8B01AC9C8F3A38431F250E5D8AB366C7BC9CEECAA6B7CBE9DE3922ACB3B1582D",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\last_page_check.png",
+    "sha256": "82BC37E5DBD8F1E0CB14D55EA3B5AD4C796EEE7DE3FC21F551F5EAB3E5E9B8EF",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-01.png",
+    "sha256": "CCBCEADC7055F030AE70D2084AC131B48140DC778C60C1E78F225CD842431004",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-02.png",
+    "sha256": "B3AE91201A4C236F67AB2DEC0CCADB3D417FEDEE024B5469A9A6FC407F877999",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-03.png",
+    "sha256": "FA5821316E3DAA464D775519742F3174A3E06D337F171AFD6F943B0D0D7740D9",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-04.png",
+    "sha256": "14220572EDD281E0602D77F7660A102AF4A28F7E7537A19D01AAB5B7E4987D59",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-05.png",
+    "sha256": "20515E29B52FCF76A221F20936A0BDED57E88192C8B32D0A5E5060BBF6DB0987",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-06.png",
+    "sha256": "757BB6B42CB6AD3A27E0C8F73675E0608B45D8BAE9F20B32AC6192196D5314A9",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-07.png",
+    "sha256": "20D85D59A4BFA10A91DA5A521F56EDF3E346B26AC72D32EB2F82B1E4DF9E3A53",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-08.png",
+    "sha256": "E550BA413BEC36BF52391B9D83E458F1D67F8395ECE6601E56A88434BC3C5A70",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-09.png",
+    "sha256": "E3D3CA0D77D544FD83234E26140C878BFA512DF17FC6BACDCCF52898B4BA13E8",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-10.png",
+    "sha256": "C6DBA345F785D7AF636C39FE42BE32004A1F14B109A5AD670946BC331CF528AA",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-11.png",
+    "sha256": "E65DE8C7FE9AE8E820CDC9B0FFE87F57D71487EC6685E7C5EABFDBC0BD9072FA",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\page-12.png",
+    "sha256": "D7E2EB9E8B57A10FA4AC235552861D09906F0C1FB7DBE4FE215D18F6F20259E6",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-01.png",
+    "sha256": "E28C08368AFAA94A45317F014E33A08353D535932ED530CAD8D50F46B010E8CC",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-02.png",
+    "sha256": "B9C51428C951A3AE8CFCF98FB7D8BE1FDB141AACD8821696861C080D31911242",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-03.png",
+    "sha256": "130EC7DEABB6B8AAE47942CA72A5FEEFFD232A7E9F60E6D69695EAF041EDF3F0",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-04.png",
+    "sha256": "38B00814228D7AAD6C16B75F311B9342AF9D4984F428ECE8209A2B10D9D1F68D",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-05.png",
+    "sha256": "6D8FF24675457F139C7093D8E15372C17D1301824EF86A200F0586A24493924A",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-06.png",
+    "sha256": "DE0DD3248BFCF7F3B31AF0F9E86FB1AB6966C6C4922B2C6EBB74D4909153AEBE",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-07.png",
+    "sha256": "E060D4F7674C8D3B815E4538FA5A7DC39CC6681027AF9A5DB32237392280F836",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-08.png",
+    "sha256": "5C7236575D68318AA9F7403DBD74F7A3FEEAD5B4F7199C241A50B921B7468480",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-09.png",
+    "sha256": "E8576EEEB2A37591A8FC0057A451DF3F37F9F6B73D0C66949F305CDE56E3DE49",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-10.png",
+    "sha256": "5889DEB1B63C870256B34CE06223A3E08F4EC959452A33A88AF44F683CD4E6B8",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-11.png",
+    "sha256": "AA7327F97068F512BC555E879D62ECBB68708AD2BA226E1B3493834F16B6DC6E",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-12.png",
+    "sha256": "5F133708AED0FFAC2698332158BE9F9E039C22E842D75D965D42A942EE29F870",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\review-13.png",
+    "sha256": "650FD4ECE0A76CCA7506248BB5148821FB7F8FA5128EB205E03B3A9762361086",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-1.png",
+    "sha256": "12D7EA8E87F3CE39268517E65568A47E407E207320D986D91A78774448233B46",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-2.png",
+    "sha256": "CE190E4CFFDE95ED873236A6FF2FEE263F37B1FDF726247B0DF688235E5B67C8",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-3.png",
+    "sha256": "F0BB131C4C41F7A5F0D0D41883CA8A2EADF552A2927EF1C4EDB143FB362CE1F0",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-4.png",
+    "sha256": "8DB0082C45CC5D851B4FEB46FECCE349CE863D97F8D7FD26CFF684AB21C06B2E",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-5.png",
+    "sha256": "BB2BB91951CAD88405957F96FF9D695C889BBA248C862780285DF4C5A38904A0",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-6.png",
+    "sha256": "E232DE9D1C3FEC1E63077D6C3510B57978816DAB4FBF0442EA8BE1D379F59E8F",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-7.png",
+    "sha256": "1386FA50605EFC9FA9F37B819D9731EAEF374EA05E789170608A9C814EE984E1",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-8.png",
+    "sha256": "F75F7660600E2552A195B73FC18E89C1286BB0C2F3823FED16444F00BFD30CD5",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\tmp\\pdfs\\spec-9.png",
+    "sha256": "825FDBB298FCE4ECE9BAFA0F017E4896DD6EFE71F7EA9BD519430AF155662E49",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  },
+  {
+    "path": "C:\\Users\\cubid\\Documents\\Chatgpt-proyects\\ARTEMIS\\bootstrap_artemis.py",
+    "sha256": "D17557F22E23A7CFE0CE2AF1752D0DA30E2D250CBDF80CB300C220BFA55DFDB3",
+    "reason": "Contexto ASTROGUARD sustituido o intermedio generado durante la elaboración anterior"
+  }
+]

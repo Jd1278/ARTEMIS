@@ -1,0 +1,11 @@
+subject,date,phase,bedrest_day,timepoint,tilt_tolerance_min,supine_sbp_mean,supine_dbp_mean,last_tilt_sbp,last_tilt_dbp,min_tilt_sbp,quality_flag
+C1G0001,2004-09-03,pre_bedrest,-6,BR-6,30,119.0,72.0,101,67,99,ok
+C1G0001,2004-11-08,post_bedrest,61,R+0,18,116.0,78.5,103,72,101,ok
+C1G0001,2004-11-12,post_bedrest,65,R+4,10,110.5,64.5,102,73,102,ok
+C1G0002,2004-09-03,pre_bedrest,-6,BR-6,30,113.0,75.0,109,82,98,ok
+C1G0002,2004-11-08,post_bedrest,61,R+0,3,118.5,87.0,131,96,129,ok
+C1G0002,2004-11-12,post_bedrest,65,R+4,10,109.5,72.0,107,80,102,ok
+C1G0002,2004-11-13,post_bedrest,66,R+5,10,,,104,72,104,incomplete_session
+C1G0003,2004-09-05,pre_bedrest,-4,BR-4,15,114.0,53.0,121,74,113,ok
+C1G0003,2004-11-08,post_bedrest,61,R+0,26,123.0,72.0,137,85,133,ok
+C1G0003,2004-11-12,post_bedrest,65,R+4,10,114.0,58.0,145,81,111,ok

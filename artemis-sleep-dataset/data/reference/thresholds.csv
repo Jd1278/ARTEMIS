@@ -1,0 +1,10 @@
+indicator,unit,direction,yellow_at,red_at,evidence_level,source_ids,rule_text
+sleep_duration_h,hours,lower_is_worse,7,6,published,S3;S4;S5,"Green >= 7 h; yellow 6-7 h; red < 6 h. NASA schedules 8.5 h; in-flight average ~6 h; < 6 h linked to slower psychomotor speed and higher stress."
+short_sleep_streak_d,consecutive nights < 6 h,higher_is_worse,2,3,published+team,S5;S6,"Red when >= 3 consecutive nights < 6 h (NASA Reaction Self Test hypothesis); yellow at 2 nights is team-defined."
+samn_perelli,1-7 scale,higher_is_worse,4,5,published,S7;S8,"1-3 okay/alert; 4 a little tired; 5-7 moderately tired to exhausted (ICAO FMAS severity mapping)."
+pvt_lapses,count (RT >= 355 ms),higher_is_worse,11,20,published,S9;S10,"PVT-B lapse = RT >= 355 ms. 11 and 20 lapses split high / medium / low performance in a fitness-for-duty study."
+pvt_speed_change_pct,% vs personal baseline,lower_is_worse,-10,-20,team-defined,S5;S9,"Response speed (1/RT) is the most sensitive PVT metric to sleep loss; cutoffs of -10% / -20% vs the astronaut's own baseline are team-defined."
+stress_vas,0-100,higher_is_worse,50,75,team-defined,S5,"Visual analog scale as used in the ISS Reaction Self Test; cutoffs team-defined."
+workload_vas,0-100,higher_is_worse,50,75,team-defined,S5,"Visual analog scale as used in the ISS Reaction Self Test; cutoffs team-defined."
+mood_vas,0-100 (higher = better),lower_is_worse,50,25,team-defined,S1;S2,"Behavioral health self-check; cutoffs team-defined."
+resting_hr_delta_bpm,bpm vs personal baseline,higher_is_worse,10,20,team-defined,S11,"Rise vs own baseline; absolute values outside 40-100 bpm are always red (adult resting reference 60-100 bpm)."

@@ -1,0 +1,7 @@
+crew_id,role,sex,mission,launch_date,mission_length_days,note
+CM-01,Commander,M,SIM-ISS-180,2026-03-01,180,Fictional crew member (simulated)
+CM-02,Flight Engineer 1,F,SIM-ISS-180,2026-03-01,180,Fictional crew member (simulated)
+CM-03,Flight Engineer 2,M,SIM-ISS-180,2026-03-01,180,Fictional crew member (simulated)
+CM-04,Flight Engineer 3,F,SIM-ISS-180,2026-03-01,180,Fictional crew member (simulated)
+CM-05,Science Officer,M,SIM-ISS-180,2026-03-01,180,Fictional crew member (simulated)
+CM-06,Medical Officer,F,SIM-ISS-180,2026-03-01,180,Fictional crew member (simulated)

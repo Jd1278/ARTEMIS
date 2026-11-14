@@ -1,0 +1,3 @@
+*.py text eol=lf
+*.sql text eol=lf
+data/demo/*.json -text

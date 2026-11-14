@@ -1,0 +1,13 @@
+trigger_indicator,level,action_for_astronaut,escalate_to_flight_surgeon,source_ids
+sleep_duration_h,yellow,"Protect the next sleep window: dim cabin light 1 h before bed, use sleep station, avoid screens/caffeine late.",no,S3;S4
+sleep_duration_h,red,Request schedule adjustment for next shift; consider a short nap before critical tasks; log sleep aid use.,if repeated,S3;S4;S6
+short_sleep_streak_d,red,Flag as cumulative sleep debt: avoid safety-critical tasks until a full sleep opportunity is recovered.,yes,S5;S6
+samn_perelli,red,Do not start a demanding task alone; run the 3-min vigilance test; pair with a crewmate.,if >= 6,S7;S8
+pvt_lapses,red,"Performance below fitness-for-duty range: defer complex procedures, recover sleep, retest in 12 h.",yes,S9;S10
+pvt_speed_change_pct,yellow,"Alertness below your own baseline: plan a recovery sleep, retest tomorrow.",no,S5;S9
+stress_vas,red,"Take a scheduled break, private family conference or private psychological conference.",if 3+ days,S1;S2
+mood_vas,red,Behavioral health check-in with crew medical officer; schedule private conference with ground.,yes,S1;S2
+workload_vas,red,Report overload to mission control to rebalance the timeline.,no,S6
+resting_hr_delta_bpm,red,"Re-measure at rest; if still elevated with fatigue or stress, notify crew medical officer.",yes,S11
+radiation_dose_equivalent_uSv_day,yellow,"Dose higher than usual today: check space weather alerts; limit time in low-shielding areas.",no,R1;R2
+radiation_dose_equivalent_uSv_day,red,"Possible solar particle event: follow the radiation alert procedure and move to the most shielded area of the station; ground radiation team confirms.",yes,R1;R2
