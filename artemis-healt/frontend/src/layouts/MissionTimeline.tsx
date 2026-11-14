@@ -74,7 +74,7 @@ export function MissionTimeline() {
           </button>
           <button type="button" className="btn btn--primary timeline__play" onClick={toggle} aria-pressed={playing}>
             {playing ? <IconPause size={18} /> : <IconPlay size={18} />}
-            {playing ? "Pause" : "Play"}
+            <span className="timeline__play-label">{playing ? "Pause" : "Play"}</span>
           </button>
           <button type="button" className="btn" aria-label="Next day" onClick={() => setMissionDay(missionDay + 1)} disabled={missionDay >= MISSION.days}>
             <IconChevron size={20} />

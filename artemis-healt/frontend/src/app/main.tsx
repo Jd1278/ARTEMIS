@@ -13,10 +13,12 @@ import { EducationPage } from "../features/education/EducationPage";
 import { GalleryPage } from "../features/gallery/GalleryPage";
 import { EmptyState } from "../design-system/components";
 import { MissionProvider } from "./state";
+import { RouteErrorPage } from "./RouteErrorPage";
 
 const router = createBrowserRouter([
   {
     element: <AppShell />,
+    errorElement: <RouteErrorPage />,
     children: [
       { path: "/", element: <DashboardPage /> },
       { path: "/log", element: <RecordPage /> },

@@ -9,3 +9,7 @@ frontend/dist/
 *.egg-info/
 .pytest_cache/
 frontend/*.tsbuildinfo
+frontend/test-results/
+frontend/playwright-report/
+.vercel
+.env*
